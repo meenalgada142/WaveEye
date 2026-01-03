@@ -1,0 +1,52 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# ===============================
+# PyInstaller
+# ===============================
+build/
+dist/
+*.spec
+
+# ===============================
+# OS / IDE
+# ===============================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Outputs (runtime generated)
+# ===============================
+outputs/*
+!outputs/.gitkeep
+
+# ===============================
+# User input data
+# ===============================
+Preprocessing/user_input/*
+!Preprocessing/user_input/.gitkeep
+!Preprocessing/user_input/README.md
+
+# ===============================
+# IR Backtracking SOURCE (BLOCKED)
+# ===============================
+IR_backtracking/*.py
+IR_backtracking/__pycache__/
+
+# ===============================
+# Logs / waveforms
+# ===============================
+*.vcd
+*.wlf
+*.fst
+*.log
