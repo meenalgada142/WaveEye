@@ -2,8 +2,7 @@
 
 **Automated RTL signal backtracking and root cause analysis for hardware verification.**
 
-WaveEye traces every signal in your design back to its RTL drivers, captures the conditions that control each assignment, and explains why signals behave the way they do using waveform data and Verilog scheduling semantics.
-Unlike traditional waveform viewers or linters, WaveEye reasons about RTL execution using Verilog scheduling semantics to explain *why* a signal value won.
+WaveEye traces every signal in your design back to its RTL drivers, captures the conditions that control each assignment, and explains why signals behave the way they do using waveform data and Verilog scheduling semantics. Unlike traditional waveform viewers or linters, WaveEye reasons about RTL execution using Verilog scheduling semantics to explain why a signal value won.
 
 ---
 
@@ -51,12 +50,12 @@ always_ff @(posedge clk) begin
 end
 ```
 
-**WaveEye finds:**
-```csv
-signal,condition,rhs,assign_type,always_block_id
-tx_done,state == RESP,1'b1,nonblocking,42
-tx_done,state == RESP && BREADY,1'b0,nonblocking,42
-```
+**WaveEye backtracking output:**
+
+| signal | condition | rhs | assign_type | always_block_id |
+|--------|-----------|-----|-------------|-----------------|
+| tx_done | state == RESP | 1'b1 | nonblocking | 42 |
+| tx_done | state == RESP && BREADY | 1'b0 | nonblocking | 42 |
 
 **Interactive analysis explains:**
 ```
@@ -159,7 +158,6 @@ The **IR Analysis Engine** (`IR_backtracking/ir_engine.exe`) is proprietary soft
 - **Usage rights**: Free for evaluation and non-commercial use
 - **Commercial use**: Requires separate licensing
 
-
 The analysis engine contains:
 - IR builder and RTL parser
 - Signal backtracking algorithms
@@ -203,7 +201,7 @@ Contributions to the **open source components** (MIT licensed) are welcome!
 
 **Meenal Gada**  
 GitHub: [@meenalgada142](https://github.com/meenalgada142)  
-Email: your-email@example.com
+Email: meenalgada142@gmail.com
 
 For questions or collaboration: Open an issue or reach out via email.
 
