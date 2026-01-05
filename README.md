@@ -1,212 +1,204 @@
 # WaveEye
 
-**Automated RTL signal backtracking and root cause analysis for hardware verification.**
+**Automated RTL signal backtracking and root-cause analysis** for hardware verification.
 
-WaveEye traces every signal in your design back to its RTL drivers, captures the conditions that control each assignment, and explains why signals behave the way they do using waveform data and Verilog scheduling semantics. Unlike traditional waveform viewers or linters, WaveEye reasons about RTL execution using Verilog scheduling semantics to explain why a signal value won.
+WaveEye analyzes RTL designs using waveform data to explain **why** signals take specific values. It traces signals back to all RTL drivers, evaluates driver conditions cycle-by-cycle, and detects NBA races, overwrites, and stuck behavior using Verilog scheduling semantics.
+
+**WaveEye is designed as a single-command tool** for verification engineers, with a proprietary analysis engine and open preprocessing pipeline.
 
 ---
 
-## Quick Start
+## How WaveEye Is Distributed (Important)
 
-### Install
+WaveEye consists of **two parts**:
+
+| Component | Location | License |
+|-----------|----------|---------|
+| **Open-source** preprocessing & orchestration | GitHub repo | MIT |
+| **Proprietary** IR analysis engine | GitHub Releases (binary only) | Proprietary |
+
+**You need both to run WaveEye.**
+
+---
+
+## Quick Start (Recommended)
+
+### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/meenalgada142/WaveEye.git
 cd WaveEye
+```
+
+This gives you:
+
+main.py (single entry point)
+
+Preprocessing/ (waveform preprocessing)
+### 2. Download the IR Engine (Required)
+
+Download from **GitHub Releases**:
+> 👉 **Releases → WaveEye-v0.1-MVP → `ir_engine.exe`**
+
+Place it **exactly here**:
+```bash
+WaveEye/
+└── IR_backtracking/
+    └── ir_engine.exe
+```
+
+
+⚠️ The engine is not included in the repository and must be downloaded separately.
+
+### 3. Install Python dependencies
+```bash
 pip install pandas pyslang
 ```
 
-### Run
-1. Place your RTL files (`.sv`, `.v`) and VCD waveform in `Preprocessing/user_input/`
-2. Run the pipeline:
-   ```bash
-   python main.py
-   ```
-3. View results in `outputs/userXX/analysis/`
+Python 3.9+ is recommended.
 
----
+### 4. Run WaveEye
+```bash
+python main.py
+```
+That’s it.
 
-## What You Get
+`main.py` will:
 
-WaveEye automatically generates:
+- Run preprocessing
+- Invoke the IR engine automatically
+- Generate analysis outputs
 
-| File | Description |
-|------|-------------|
-| `*_backtracking.csv` | Every signal mapped to its RTL drivers with conditions |
-| `*_true_drivers.csv` | Behavioral drivers (filtered from reset/defaults) |
-| `*_edges.csv` | Signal transition timing |
-| `*_stuck_signals.csv` | Signals that don't toggle when expected |
+### Expected Inputs
 
-Plus **interactive root cause analysis** that explains NBA races, overwrites, and condition conflicts.
+Place your inputs before running main.py:
 
----
+**RTL files:**
+```bash
+Preprocessing/user_input/
+├── design.sv
+└── submodule.sv
+```
+### Waveform
 
-## Example: Finding an NBA Race
+VCD or simulator-exported CSV
 
-**Your RTL:**
-```systemverilog
-always_ff @(posedge clk) begin
-  if (state == RESP)           tx_done <= 1'b1;
-  if (state == RESP && BREADY) tx_done <= 1'b0;
-end
+Also placed under Preprocessing/user_input/
+
+### Outputs
+
+Results are written to:
+```bash
+outputs/
+└── userXX/
+    ├── preprocessing/
+    │   └── all_mapped_values.csv
+    └── analysis/
+        ├── *_backtracking.csv
+        ├── *_true_drivers.csv
+        ├── *_edges.csv
+        ├── *_stuck_signals.csv
+        └── *.json
 ```
 
-**WaveEye backtracking output:**
+You never need to edit these files manually.
 
-| signal | condition | rhs | assign_type | always_block_id |
-|--------|-----------|-----|-------------|-----------------|
-| tx_done | state == RESP | 1'b1 | nonblocking | 42 |
-| tx_done | state == RESP && BREADY | 1'b0 | nonblocking | 42 |
+## What WaveEye Detects
 
-**Interactive analysis explains:**
-```
-[BUG] EXECUTION_ORDER_BUG
+- Multiple RTL drivers per signal
+- Non-blocking assignment races (NBA overwrites)
+- Condition overlaps
+- Reset masking issues
+- Signals stuck high or low
+- Post-reset non-activity
+- Execution-order bugs within the same `always` block
 
-Signal: tx_done
-Block: 42
 
-Both drivers fire when state==RESP && BREADY==1:
-  Driver 0: Schedules tx_done <= 1
-  Driver 1: Schedules tx_done <= 0 (WINS - last assignment)
-
-Result: tx_done becomes 0 (Driver 0's update is lost)
-
-ROOT CAUSE: Conditions overlap. Both can be TRUE simultaneously.
-The last assignment wins per Verilog NBA scheduling rules.
-```
-
----
-
-## How It Works
-
-### 1. VCD Preprocessing
-Converts waveforms to structured CSV with automatic signal classification (clocks, resets, FSMs).
-
-### 2. Signal Backtracking
-Parses your RTL and extracts:
-- **All signal drivers** with their conditions
-- **Assignment types** (blocking vs. non-blocking)
-- **Always block IDs** for execution analysis
-- **Complete condition expressions** for overlap detection
-
-### 3. Root Cause Analysis
-Evaluates driver conditions against waveform data to:
-- Detect when multiple drivers fire in the same cycle
-- Analyze execution order using Verilog NBA rules
-- Identify condition overlaps and races
-- Explain unexpected signal behavior
-
----
-
-## Key Features
-
-✅ **Automated backtracking** - Trace any signal to its RTL drivers  
-✅ **Condition capture** - See exactly when each driver fires  
-✅ **NBA race detection** - Find overwrites and scheduling conflicts  
-✅ **Cross-block analysis** - Detect unsafe multi-block drivers  
-✅ **Interactive debugging** - Select signals for detailed root cause explanations  
-
----
-
-## Use Cases
-
-- **Debug failing assertions** - Understand why signals don't match expected values
-- **Find race conditions** - Detect NBA conflicts before they cause problems
-- **Trace signal origins** - See all drivers and their firing conditions
-- **Learn hardware debugging** - Visualize RTL execution cycle-by-cycle
-
----
-
-## Architecture
-
-```
+### Architecture Overview
+```bash
 WaveEye/
-├── main.py                    # Pipeline orchestrator (MIT)
-├── Preprocessing/             # VCD → CSV conversion (MIT)
-└── IR_backtracking/
-    └── ir_engine.exe          # IR backtracking + root cause reasoning engine (proprietary)
+├── main.py                    ← Single entry point
+├── Preprocessing/             ← Open source (MIT)
+│   └── cli.py
+├── IR_backtracking/
+│   └── ir_engine.exe          ← Proprietary (binary only)
+└── outputs/
 ```
 
----
+`main.py` automatically orchestrates everything.
+Users never call `ir_engine.exe` directly.
 
-## License
+## Licensing Model
 
-WaveEye is dual-licensed to balance openness with intellectual property protection:
-
-### Open Source Components (MIT License)
+### Open Source (MIT License)
 
 The following components are released under the **MIT License**:
 
-- **Pipeline orchestrator** (`main.py`)
-- **Preprocessing module** (`Preprocessing/`)
-  - VCD parsing and conversion
-  - Signal classification
-  - Waveform structuring
+- `main.py`
+- `Preprocessing/`
+- Pipeline glue and orchestration logic
 
 You are free to:
-- ✅ Use, modify, and distribute these components
-- ✅ Use commercially without restrictions
-- ✅ Create derivative works
 
-See [LICENSE](LICENSE) for full MIT license text.
+- Modify
+- Redistribute
+- Use commercially
 
-### Proprietary Components
 
-The **IR Analysis Engine** (`IR_backtracking/ir_engine.exe`) is proprietary software:
+### Proprietary Component
 
-- **Distributed as**: Pre-compiled binary only
-- **Source code**: Not publicly available
-- **Usage rights**: Free for evaluation and non-commercial use
-- **Commercial use**: Requires separate licensing
+The **IR analysis engine**:
 
-The analysis engine contains:
-- IR builder and RTL parser
-- Signal backtracking algorithms
-- Root cause reasoning engine
-- Interactive analysis interface
+- `IR_backtracking/ir_engine.exe`
+- Distributed as **binary only**
+- Source code is **not public**
+- Free for **evaluation and research use**
+- **Commercial use requires a license**
 
-See [IR_backtracking/README.md](IR_backtracking/README.md) for detailed terms.
 
-### Commercial Licensing
+## Why This Split Exists
 
-For commercial use of the analysis engine, contact:
+This architecture allows:
 
-**Meenal Gada**  
-Email: meenalgada142@gmail.com  
-GitHub: [@meenalgada142](https://github.com/meenalgada142)
+- Fast iteration on preprocessing
+- A stable, proprietary reasoning engine
+- Clean separation of intellectual property
+- Easy transition to a SaaS offering later
 
----
+It also ensures users interact with **one unified tool**, not multiple standalone scripts.
 
-## Requirements
 
-- Python 3.7+
-- pandas
-- pyslang
+## Troubleshooting
 
----
+### `ir_engine.exe` not found
 
-## Contributing
+Make sure the following file exists and is executable:
+```bash
+WaveEye/IR_backtracking/ir_engine.exe
+```
 
-Contributions to the **open source components** (MIT licensed) are welcome!
+### No waveform found
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes to `main.py` or `Preprocessing/`
-4. Submit a pull request
+Ensure preprocessing inputs exist:
+```bash
+Preprocessing/user_input/
+```
+### Engine fails after preprocessing
 
-**Note:** The analysis engine (`ir_engine.exe`) is proprietary and not open for contributions.
+Do not rename or move:
+```bash
+outputs/<user>/preprocessing/all_mapped_values.csv
+```
 
----
+### Contact
 
-## Contact
+**Meenal Gada**
 
-**Meenal Gada**  
-GitHub: [@meenalgada142](https://github.com/meenalgada142)  
-Email: meenalgada142@gmail.com
+**GitHub**: https://github.com/meenalgada142
 
-For questions or collaboration: Open an issue or reach out via email.
+**Email**: meenalgada142@gmail.com
 
----
+For licensing, feedback, or collaboration, reach out directly.
 
-**WaveEye** - Trace every signal to its source.
-
-*Copyright © 2025 Meenal Gada. Pipeline components released under MIT License. Analysis engine is proprietary software.*
+WaveEye
+Trace every signal to its source.
