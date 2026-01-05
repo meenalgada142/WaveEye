@@ -2,9 +2,11 @@
 
 This directory contains the WaveEye analysis engine distributed as a pre-compiled binary.
 
+⚠️ **The binary is not stored in the repository. You must download `ir_engine.exe` from the GitHub Releases page and place it in this directory.**
+
 ## Files
 
-- `ir_engine.exe` - Complete analysis pipeline (IR building, backtracking, root cause analysis)
+- `ir_engine.exe` – Complete analysis pipeline (IR building, backtracking, root cause analysis)
 
 ## Usage
 
@@ -31,9 +33,9 @@ The analysis engine binary (`ir_engine.exe`) is **proprietary software**.
 For commercial use or licensing inquiries, contact:
 
 **Meenal Gada**  
-Email: your-email@example.com  
+Email: meenalgada142@example.com  
 GitHub: [@meenalgada142](https://github.com/meenalgada142)
 
 ---
 
-*The rest of WaveEye (main.py, Preprocessing/) is open source under the MIT License.*
+*The rest of WaveEye (`main.py`, `Preprocessing/`) is open source under the MIT License.*
