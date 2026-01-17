@@ -244,8 +244,6 @@ WaveEye is distributed as a proprietary binary.
 - Commercial use requires a license
 - Source code is not publicly available at this stage
 
-The preprocessing pipeline source code is available in this repository under the MIT License for developers who want to customize or integrate it.
-
 ---
 
 ## Contact
