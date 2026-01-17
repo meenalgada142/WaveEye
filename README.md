@@ -2,203 +2,262 @@
 
 **Automated RTL signal backtracking and root-cause analysis** for hardware verification.
 
-WaveEye analyzes RTL designs using waveform data to explain **why** signals take specific values. It traces signals back to all RTL drivers, evaluates driver conditions cycle-by-cycle, and detects NBA races, overwrites, and stuck behavior using Verilog scheduling semantics.
+🎯 **Most tools tell you *what* failed. WaveEye tells you *why*.**
 
-**WaveEye is designed as a single-command tool** for verification engineers, with a proprietary analysis engine and open preprocessing pipeline.
+Traditional RTL debug tools stop at detection:
+- "Multiple drivers found"
+- "Race condition possible"  
+- "Signal conflict detected"
 
----
-
-## How WaveEye Is Distributed (Important)
-
-WaveEye consists of **two parts**:
-
-| Component | Location | License |
-|-----------|----------|---------|
-| **Open-source** preprocessing & orchestration | GitHub repo | MIT |
-| **Proprietary** IR analysis engine | GitHub Releases (binary only) | Proprietary |
-
-**You need both to run WaveEye.**
+**WaveEye goes further:**
+- Identifies exactly which drivers conflicted
+- Explains **why** they conflicted (subset logic, timing overlap, FSM semantics)
+- Shows how Verilog scheduling actually resolved it (NBA ordering, execution order)
+- Points to what needs to change in the RTL
 
 ---
 
-## Quick Start (Recommended)
+## What WaveEye Reasons About (Not Just Flags)
 
-### 1. Clone the Repository
+### Structural Bugs
+- Cross-always-block races
+- Mixed blocking / non-blocking assignments
 
-```bash
-git clone https://github.com/meenalgada142/WaveEye.git
-cd WaveEye
+### FSM Semantic Bugs
+- FSM output masking (state-specific logic overwritten)
+
+### Execution-Order Bugs
+- Superset condition overwrites specific logic
+- Sequential assignment masking (NBA source-order effects)
+
+### Verification Gaps
+- Conditions that never fire (runtime coverage holes)
+
+---
+
+## Download
+
+Download the standalone executable from [GitHub Releases](https://github.com/meenalgada142/WaveEye/releases):
+
+```
+👉 Releases → WaveEye v0.1.0 → WaveEye.exe
 ```
 
-This gives you:
+---
 
-main.py (single entry point)
+## Quick Start
 
-Preprocessing/ (waveform preprocessing)
-### 2. Download the IR Engine (Required)
+### 1. Prepare Your Input Directory
 
-Download from **GitHub Releases**:
-> 👉 **Releases → WaveEye-v0.1-MVP → `ir_engine.exe`**
-
-Place it **exactly here**:
-```bash
-WaveEye/
-└── IR_backtracking/
-    └── ir_engine.exe
+**IMPORTANT:** Organize your files with this exact structure:
+```
+my_project/           ← Input folder
+├── rtl/              ← RTL files folder (required)
+│   ├── design.sv
+│   ├── submodule.sv
+│   └── ...
+└── wave/             ← Waveform files folder (required)
+    ├── simulation.vcd
+    ├── (or .csv files)
+    └── ...
 ```
 
+The input folder **must contain** two subdirectories named exactly:
+- **`rtl/`** - containing your RTL design files (.sv, .v)
+- **`wave/`** - containing your waveform files (.vcd, .csv)
 
-⚠️ The engine is not included in the repository and must be downloaded separately.
+### 2. Run WaveEye
 
-### 3. Install Python dependencies
+Double-click `WaveEye.exe` or run from command line:
 ```bash
-pip install pandas pyslang
+WaveEye.exe
 ```
 
-Python 3.9+ is recommended.
+### 3. Follow the Interactive Prompts
 
-### 4. Run WaveEye
-```bash
-python main.py
+**Step 1: Select Analysis Mode**
 ```
-That’s it.
+WAVEEYE ANALYSIS PIPELINE
 
-`main.py` will:
+Stage 1: Preprocessing (VCD → CSV)
+Stage 2: IR Backtracking & Root Cause Analysis
 
-- Run preprocessing
-- Invoke the IR engine automatically
-- Generate analysis outputs
+Options:
+  1. Automated Mode
+  2. Interactive Mode
+  3. Exit
 
-### Expected Inputs
-
-Place your inputs before running main.py:
-
-**RTL files:**
-```bash
-Preprocessing/user_input/
-├── design.sv
-└── submodule.sv
-```
-### Waveform
-
-VCD or simulator-exported CSV
-
-Also placed under Preprocessing/user_input/
-
-### Outputs
-
-Results are written to:
-```bash
-outputs/
-└── userXX/
-    ├── preprocessing/
-    │   └── all_mapped_values.csv
-    └── analysis/
-        ├── *_backtracking.csv
-        ├── *_true_drivers.csv
-        ├── *_edges.csv
-        ├── *_stuck_signals.csv
-        └── *.json
+Enter choice (1-3):
 ```
 
-You never need to edit these files manually.
+- **Automated Mode**: Runs full analysis pipeline and displays results
+- **Interactive Mode**: Enables multiple analysis sessions with detailed signal-level inspection
 
-## What WaveEye Detects
+**Step 2: Provide Input Path**
+```
+Enter path to input folder (contains rtl/ and wave/):
+> ./my_project
 
-- Multiple RTL drivers per signal
-- Non-blocking assignment races (NBA overwrites)
-- Condition overlaps
-- Reset masking issues
-- Signals stuck high or low
-- Post-reset non-activity
-- Execution-order bugs within the same `always` block
-
-
-### Architecture Overview
-```bash
-WaveEye/
-├── main.py                    ← Single entry point
-├── Preprocessing/             ← Open source (MIT)
-│   └── cli.py
-├── IR_backtracking/
-│   └── ir_engine.exe          ← Proprietary (binary only)
-└── outputs/
+[Processing...]
+✓ Preprocessing complete
+✓ IR analysis complete
 ```
 
-`main.py` automatically orchestrates everything.
-Users never call `ir_engine.exe` directly.
+### 4. Review Results in Terminal
 
-## Licensing Model
+WaveEye displays analysis results directly in the terminal, allowing you to:
+- Review findings immediately
+- Run multiple interactive analysis sessions
+- Query different signals or conditions
 
-### Open Source (MIT License)
+Each issue is shown with:
+- **Human-readable explanations**, not cryptic warnings
+- The **exact conditions and drivers** involved
+- The **Verilog execution semantics** that caused the behavior
+- A **clear root cause** and an **actionable fix**
 
-The following components are released under the **MIT License**:
+---
 
-- `main.py`
-- `Preprocessing/`
-- Pipeline glue and orchestration logic
+## Validation: Real-World Testing
 
-You are free to:
+### Production FPGA Libraries
+Tested on **68 signals** from Alex Forencich's widely-used FPGA libraries:
+- UART RX/TX (24 signals) - Serial protocol FSMs
+- Ethernet GMII RX (44 signals) - Complex receive path with CRC
 
-- Modify
-- Redistribute
-- Use commercially
+**Results:**
+- ✅ **0 false positives** - all correctly identified as intentional design
+- ✅ Successfully detected injected bugs (cross-block races)
+- ✅ Clear root cause explanations for every finding
 
+### Internal Testing on Real RTL Projects
 
-### Proprietary Component
+**1. Mini SoC Peripheral Subsystem**
+- **Components tested:** 5+ RTL files
+  - Interrupt controller
+  - Register file
+  - UART TX
+  - Timer
+  - SoC peripheral top
+- **Test cases:** 3+ scenarios covering multiple modules
+- **Result:** ✅ Successfully identified and explained all injected bugs
 
-The **IR analysis engine**:
+**2. AXI-Lite Interface with FIFO Wrapper**
+- **Bug detected:** Non-blocking assignment race causing testbench assertion failure
+- **Root cause:** Scheduling conflict where `bvalid` and `bready` were asserted simultaneously due to NBA ordering
+- **Result:** ✅ WaveEye identified the exact NBA race condition and explained the Verilog scheduling semantics that caused the conflict
 
-- `IR_backtracking/ir_engine.exe`
-- Distributed as **binary only**
-- Source code is **not public**
-- Free for **evaluation and research use**
-- **Commercial use requires a license**
+*Most verification tools have 50-80% false positive rates. Engineers ignore warnings they don't trust.*
 
+---
 
-## Why This Split Exists
+## What Makes WaveEye Different
 
-This architecture allows:
+WaveEye performs **deterministic reasoning** over RTL and waveforms — the same way a verification engineer reasons — but automated.
 
-- Fast iteration on preprocessing
-- A stable, proprietary reasoning engine
-- Clean separation of intellectual property
-- Easy transition to a SaaS offering later
+It runs as a downloadable executable, so your **RTL, testbenches, and proprietary IP never leave your machine**.
 
-It also ensures users interact with **one unified tool**, not multiple standalone scripts.
+**From hours of waveform digging → minutes of reasoning.**
 
+---
+
+## Architecture
+
+```
+WaveEye.exe
+├── Stage 1: Preprocessing (VCD → CSV)
+├── Stage 2: IR Backtracking & Root Cause Analysis
+└── Interactive terminal interface
+```
+
+WaveEye is a single executable that handles the complete analysis pipeline with interactive terminal output.
+
+---
 
 ## Troubleshooting
 
-### `ir_engine.exe` not found
+### "Cannot find rtl/ or wave/ folder"
+- Ensure your input folder contains exactly two subdirectories: `rtl/` and `wave/`
+- Folder names are case-sensitive on some systems
+- Check the structure:
+  ```
+  my_project/
+  ├── rtl/      ← Must be named exactly "rtl"
+  └── wave/     ← Must be named exactly "wave"
+  ```
 
-Make sure the following file exists and is executable:
-```bash
-WaveEye/IR_backtracking/ir_engine.exe
+### "No RTL files found"
+- Ensure `.sv` or `.v` files exist in the `rtl/` folder
+- Check file permissions
+
+### "Waveform format not supported"
+- Currently supports: `.vcd`, `.csv`
+- Ensure waveform files are in the `wave/` folder
+
+### "WaveEye.exe won't launch"
+- Windows Defender may block unsigned executables
+- Right-click → Properties → Unblock
+- Or add an exception for WaveEye.exe
+
+---
+
+## Example Directory Structures
+
+### ✅ CORRECT Structure:
+```
+verification_project/
+├── rtl/
+│   ├── cpu.sv
+│   ├── alu.sv
+│   └── register_file.sv
+└── wave/
+    └── simulation.vcd
+
+Command: WaveEye.exe
+Input: ./verification_project
 ```
 
-### No waveform found
+### ❌ INCORRECT Structures:
 
-Ensure preprocessing inputs exist:
-```bash
-Preprocessing/user_input/
+**Missing subdirectories:**
 ```
-### Engine fails after preprocessing
-
-Do not rename or move:
-```bash
-outputs/<user>/preprocessing/all_mapped_values.csv
+verification_project/
+├── cpu.sv           ← RTL files directly in root
+├── alu.sv
+└── simulation.vcd   ← Wave file directly in root
 ```
 
-### Contact
+**Wrong folder names:**
+```
+verification_project/
+├── RTL/             ← Wrong (capital letters)
+└── waveforms/       ← Wrong (should be "wave")
+```
 
-**Meenal Gada**
+---
 
-**GitHub**: https://github.com/meenalgada142
+## Licensing
 
-**Email**: meenalgada142@gmail.com
+WaveEye is distributed as a proprietary binary.
+
+- **Free for evaluation and research use**
+- Commercial use requires a license
+- Source code is not publicly available at this stage
+
+The preprocessing pipeline source code is available in this repository under the MIT License for developers who want to customize or integrate it.
+
+---
+
+## Contact
+
+**Meenal Gada**  
+GitHub: [https://github.com/meenalgada142](https://github.com/meenalgada142)  
+Email: meenalgada142@gmail.com
 
 For licensing, feedback, or collaboration, reach out directly.
 
-WaveEye
-Trace every signal to its source.
+---
+
+**WaveEye** — *Trace every signal to its source.*
+
+*If you care about understanding RTL behavior — not just spotting warnings — this is for you.*
