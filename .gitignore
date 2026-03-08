@@ -32,6 +32,8 @@ build_log.txt
 IR_backtracking/rca_8.py
 IR_backtracking/rca_resolver.py
 IR_backtracking/rca_core/
+IR_backtracking/deep_backtrack.py
+IR_backtracking/cyclic_dependency_analyzer.py
 
 # ── Archive / legacy code ─────────────────────────────────────────────────
 _archive_main_tool/
