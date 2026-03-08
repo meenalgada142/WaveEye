@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "waveeye-axi-lite"
+version = "1.0.0"
+description = "WaveEye AXI-Lite Protocol Root-Cause Analyzer"
+requires-python = ">=3.10"
+dependencies = [
+    "pyslang>=5.0",
+]
+
+[project.scripts]
+waveeye = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["IR_backtracking*", "Preprocessing*"]
+exclude = ["_archive_main_tool*", "tests*"]
