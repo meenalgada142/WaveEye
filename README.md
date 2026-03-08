@@ -124,11 +124,11 @@ Full diagnosis output for each is in [`test_results/`](test_results/).
 | `bvalibug` | `axi_lite_fifo_wrapper.sv` | BVALID scheduling conflict | 40 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID | 3.6 s |
 | `arreay_bug` | `axi_lite_fifo_wrapper.sv` | RVALID asserted without AR handshake | 1 | `AXI4L_RVALID_UNPROMPTED` | RVALID driver predicate missing ARVALID/ARREADY | 1.8 s |
 | `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | RDATA mutated during RVALID window | 1 | `AXI4L_RDATA_STABILITY` | RDATA driver has no RREADY gate | 0.2 s |
-| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | None — clean baseline | 0 | **PASS** | No defects detected | 8.9 s |
+| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | None — clean baseline | 0 protocol | `MASK_CONSERVATION_VIOLATION` | Data replication without mask mapping on `m_axil_wdata_next` (axil\_adapter\_wr.v:214) | 36 s |
 | `axil_ram` | [Alex Forencich axil\_ram](https://github.com/alexforencich/verilog-axi) | NBA override cancels BVALID | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | NBA override on BVALID + WRITE\_ALIASING/LANE\_BIJECTION on `mem` | 0.3 s |
 | `axil_dp_ram` | [Alex Forencich axil\_dp\_ram](https://github.com/alexforencich/verilog-axi) | NBA override drops BVALID before BREADY | 100 | `AXI4L_BVALID_PERSISTENCE` | NBA override on RDATA + WRITE\_ALIASING/LANE\_BIJECTION on `mem` | 3.5 s |
 
-> The last three test cases use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs — production-quality RTL. Bugs were deliberately introduced by us into `axil_ram` and `axil_dp_ram` to validate detection. `axil_adapter` was run clean to confirm zero false positives.
+> The last three test cases use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs — production-quality RTL. Bugs were deliberately introduced by us into `axil_ram` and `axil_dp_ram`. `axil_adapter` was run with no bugs introduced — WaveEye detected a structural pattern (`DATA_REPLICATION_WITHOUT_MASK_MAPPING`) in `axil_adapter_wr.v`, a width-adaptation design characteristic, with zero protocol violations.
 
 ### Sample `diagnosis.txt` — Bug detected (bvalibug)
 
