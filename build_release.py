@@ -209,6 +209,12 @@ _HIDDEN_IMPORTS: list[str] = [
     "IR_backtracking.reports.console_diagnosis",
     "IR_backtracking.reports.rtl_fix_advisor",
     "IR_backtracking.reports.executive_summary",
+    # stdlib modules used inside runpy-invoked scripts
+    # (PyInstaller can't detect these via static analysis)
+    "glob", "csv", "pathlib", "shutil", "tempfile", "hashlib",
+    "contextlib", "datetime", "fnmatch", "subprocess", "logging",
+    "copy", "textwrap", "inspect", "ast", "traceback", "struct",
+    "base64", "threading", "queue", "io", "runpy",
 ]
 
 
@@ -251,15 +257,21 @@ def step_standalone(onefile: bool = False) -> None:
     for h in _HIDDEN_IMPORTS:
         cmd.extend(["--hidden-import", h])
 
-    # --- Bundle compiled .pyd/.so extensions as binaries ---
-    # (PyInstaller treats them as native binaries, not data)
+    # --- Bundle compiled .pyd/.so extensions ---
+    # Use --collect-all to avoid per-file --add-binary flags that exceed
+    # the Windows command-line length limit (~32 KB) with 80+ .pyd files.
     compiled = collect_compiled(ROOT)
     if not compiled:
         print("[build_release] WARNING: No compiled extensions found — "
               "did you run Cython compilation first?", file=sys.stderr)
-    for pyd in compiled:
-        dest_dir = str(pyd.relative_to(ROOT).parent)
-        cmd.extend(["--add-binary", f"{pyd}{sep}{dest_dir}"])
+    for d in INCLUDE_DIRS:
+        cmd.extend(["--collect-all", d])
+
+    # --- Bundle third-party packages used in runpy-invoked scripts ---
+    # PyInstaller cannot detect these via static analysis since they are
+    # imported inside scripts loaded at runtime via runpy.run_path().
+    for pkg in ("vcdvcd", "pandas", "pyslang"):
+        cmd.extend(["--collect-all", pkg])
 
     # --- Bundle runpy stub .py files as data ---
     # get_base_path() returns sys._MEIPASS when frozen, so

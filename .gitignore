@@ -35,6 +35,11 @@ IR_backtracking/rca_resolver.py
 IR_backtracking/rca_core/
 IR_backtracking/deep_backtrack.py
 IR_backtracking/cyclic_dependency_analyzer.py
+IR_backtracking/capability_loader.py
+IR_backtracking/semantic_checks/__init__.py
+IR_backtracking/semantic_checks/invertibility.py
+IR_backtracking/semantic_checks/memory_write_analysis.py
+IR_backtracking/semantic_checks/transport_semantic_analysis.py
 IR_backtracking/IR_backtracking.py
 IR_backtracking/alias_engine.py
 IR_backtracking/temporal_predicate_analysis.py

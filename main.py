@@ -11,10 +11,18 @@ CRITICAL: Uses runpy.run_path() - NO subprocess calls.
 
 import sys
 import os
+import io
 import shutil
 import runpy
 import time
 from pathlib import Path
+
+# Force UTF-8 output so Unicode box-drawing / tick/cross chars print
+# correctly on Windows consoles that default to CP1252.
+if hasattr(sys.stdout, "buffer"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "buffer"):
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 
 # ============================================================
