@@ -1,0 +1,39 @@
+────────────────────────────────────────────────────────────────
+WaveEye Diagnostic Summary
+────────────────────────────────────────────────────────────────
+Primary Failure    :
+  AXI4L_WRITE_RESPONSE_MISSING  (AXI4-Lite Spec §A3.2.1)
+
+Confirmed Root Cause :
+  BVALID asserted by (write_state == RESP) then cancelled by more-specific override
+
+Severity           :
+  Handshake violation — AXI compliance failure
+
+Transactions Affected :
+  Protocol-visible failures     : 2
+  Structurally corrupted writes : 0
+────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────
+Causal Trace (Condensed)
+────────────────────────────────────────────────────────────────
+  Write transaction accepted
+    AWVALID handshake observed.
+
+  BVALID asserted then immediately cancelled
+    BVALID fired at cycle 1312 but was overwritten in the same cycle (cycle 1311 → 1312). AXI4-Lite requires BVALID to stay high until the handshake partner completes.
+
+  Control logic evaluated
+    FSM state analysis completed — scheduling conflict or missing enable condition identified in B-channel logic.
+
+  Scheduling conflict detected  [PROOF]
+    Cycle 1312: BVALID has 2 simultaneously active drivers with conflicting values.
+
+  Driver cancellation identified  [PROOF]
+    Asserting  (D2): if ((ARESETn) && (write_state == RESP)) → BVALID = 1
+    Overwriting (D3): if (((ARESETn) && (write_state == RESP)) && (BREADY)) → BVALID = 0
+    → BVALID=1 is overwritten by the more-specific override before handshake completes.
+
+  Conclusion:
+  BVALID cannot stay asserted — the more-specific driver (D3) cancels the assertion at cycle 1312. Concurrent override forces BVALID=0 in the same cycle.
+────────────────────────────────────────────────────────────────

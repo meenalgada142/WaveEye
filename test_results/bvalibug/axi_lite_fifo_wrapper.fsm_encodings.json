@@ -1,0 +1,7 @@
+{
+  "enums": {},
+  "localparams": {
+    "IDLE": 0,
+    "RESP": 1
+  }
+}

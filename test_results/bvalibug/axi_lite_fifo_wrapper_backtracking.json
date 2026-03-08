@@ -1,0 +1,666 @@
+{
+  "fifo_level": {
+    "alias_chain": [
+      "fifo_level",
+      "count"
+    ],
+    "drivers": [
+      {
+        "rhs": "count",
+        "condition": "true",
+        "construct": "assign",
+        "proc_type": "CONT",
+        "assign_type": "blocking",
+        "sensitivity": null,
+        "file": "axi_lite_fifo_wrapper.sv:77",
+        "always_block_id": null
+      }
+    ]
+  },
+  "AWREADY": {
+    "alias_chain": [
+      "AWREADY"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:90",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "1",
+        "condition": "((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:105",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "((ARESETn) && (write_state == IDLE)) && (!((AWVALID) && (WVALID)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:118",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (write_state == RESP)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:124",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:138",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "WREADY": {
+    "alias_chain": [
+      "WREADY"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:91",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "1",
+        "condition": "((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:106",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "((ARESETn) && (write_state == IDLE)) && (!((AWVALID) && (WVALID)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:119",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (write_state == RESP)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:125",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:139",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "BVALID": {
+    "alias_chain": [
+      "BVALID"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:92",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "1",
+        "condition": "(ARESETn) && (write_state == RESP)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:126",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "((ARESETn) && (write_state == RESP)) && (BREADY)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:131",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:140",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "BRESP": {
+    "alias_chain": [
+      "BRESP"
+    ],
+    "drivers": [
+      {
+        "rhs": "2'b00",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:93",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "2'b00",
+        "condition": "(((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))) && ((AWADDR[3:0] == 4'h0) && (!(full)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:111",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "2'b10",
+        "condition": "(((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))) && (!((AWADDR[3:0] == 4'h0) && (!(full))))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:113",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "2'b10",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:141",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "wr_en": {
+    "alias_chain": [
+      "wr_en"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:94",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "ARESETn",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:97",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "1",
+        "condition": "(((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))) && ((AWADDR[3:0] == 4'h0) && (!(full)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:110",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:142",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "write_state": {
+    "alias_chain": [
+      "write_state",
+      "IDLE"
+    ],
+    "drivers": [
+      {
+        "rhs": "IDLE",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:95",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "RESP",
+        "condition": "((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:115",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "IDLE",
+        "condition": "((ARESETn) && (write_state == RESP)) && (BREADY)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:133",
+        "always_block_id": 1
+      },
+      {
+        "rhs": "IDLE",
+        "condition": "(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:143",
+        "always_block_id": 1
+      }
+    ]
+  },
+  "ARREADY": {
+    "alias_chain": [
+      "ARREADY"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:154",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "1",
+        "condition": "((ARESETn) && (read_state == IDLE)) && (ARVALID)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:166",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (read_state == RESP)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:201",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:211",
+        "always_block_id": 2
+      }
+    ]
+  },
+  "RVALID": {
+    "alias_chain": [
+      "RVALID"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:155",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "1",
+        "condition": "(ARESETn) && (read_state == RESP)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:202",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "((ARESETn) && (read_state == RESP)) && (RREADY)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:205",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:212",
+        "always_block_id": 2
+      }
+    ]
+  },
+  "RDATA": {
+    "alias_chain": [
+      "RDATA"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:156",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "{24'b0, dout}",
+        "condition": "((((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h10)) && (!(empty))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:172",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "32'hDEAD_BEEF",
+        "condition": "((((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h10)) && (empty)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:175",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "{25'b0, count, full, empty}",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h20)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:181",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "{27'b0, fifo_level}",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h80)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:186",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "32'hBAD0BAD0",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (!(((ARADDR[7:0] == 8'h10) || (ARADDR[7:0] == 8'h20)) || (ARADDR[7:0] == 8'h80)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:191",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "32'hBAD0BAD0",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:213",
+        "always_block_id": 2
+      }
+    ]
+  },
+  "RRESP": {
+    "alias_chain": [
+      "RRESP"
+    ],
+    "drivers": [
+      {
+        "rhs": "2'b00",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:157",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b00",
+        "condition": "((((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h10)) && (!(empty))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:173",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b10",
+        "condition": "((((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h10)) && (empty)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:176",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b00",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h20)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:182",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b00",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h80)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:187",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b11",
+        "condition": "(((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (!(((ARADDR[7:0] == 8'h10) || (ARADDR[7:0] == 8'h20)) || (ARADDR[7:0] == 8'h80)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:192",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "2'b11",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:214",
+        "always_block_id": 2
+      }
+    ]
+  },
+  "rd_en": {
+    "alias_chain": [
+      "rd_en"
+    ],
+    "drivers": [
+      {
+        "rhs": "0",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:158",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "ARESETn",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:161",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "1",
+        "condition": "((((ARESETn) && (read_state == IDLE)) && (ARVALID)) && (ARADDR[7:0] == 8'h10)) && (!(empty))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:171",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "0",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:215",
+        "always_block_id": 2
+      }
+    ]
+  },
+  "read_state": {
+    "alias_chain": [
+      "read_state",
+      "IDLE"
+    ],
+    "drivers": [
+      {
+        "rhs": "IDLE",
+        "condition": "!(ARESETn)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:159",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "RESP",
+        "condition": "((ARESETn) && (read_state == IDLE)) && (ARVALID)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:167",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "IDLE",
+        "condition": "((ARESETn) && (read_state == RESP)) && (RREADY)",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:206",
+        "always_block_id": 2
+      },
+      {
+        "rhs": "IDLE",
+        "condition": "(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))",
+        "construct": "always",
+        "proc_type": "ALWAYS",
+        "assign_type": "nonblocking",
+        "sensitivity": "posedge ACLK",
+        "file": "axi_lite_fifo_wrapper.sv:216",
+        "always_block_id": 2
+      }
+    ]
+  }
+}

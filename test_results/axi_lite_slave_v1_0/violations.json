@@ -1,0 +1,20 @@
+[
+  {
+    "rule_id": "RULE_8",
+    "rule_name": "RDATA Changed During Backpressure",
+    "cycle": 316,
+    "channel": "R",
+    "facts": {
+      "valid_start_cycle": 297,
+      "rdata_initial": "0x1432655439166d0af6c97aef5",
+      "rdata_changed": "0x0",
+      "change_cycle": 316,
+      "cycles_in_backpressure": 19
+    },
+    "severity": "ERROR",
+    "explanation": "RDATA changed while RVALID was high and RREADY was low. Per AXI4-Lite spec, data signals must remain stable during backpressure.",
+    "symptoms": "RVALID asserted at cycle 297 with RDATA=0x1432655439166d0af6c97aef5. After 19 cycles of backpressure, RDATA changed to 0x0 at cycle 316 while still waiting for RREADY.",
+    "root_cause": "The RDATA output is not properly latched or held stable. The data is changing while waiting for RREADY, indicating: (1) RDATA driven directly from changing source, (2) insufficient holding logic, or (3) path not properly isolated.",
+    "recommendation": "Latch RDATA when RVALID is asserted and hold until handshake: rdata_reg <= rvalid_set ? new_data : rdata_reg. Only update after successful handshake (RVALID && RREADY)."
+  }
+]

@@ -1,0 +1,35 @@
+────────────────────────────────────────────────────────────────────────
+WaveEye — Structural RCA Analysis
+────────────────────────────────────────────────────────────────────────
+RULE_ID         : RULE_8 — AXI4L_RDATA_STABILITY
+SPEC_REFERENCE  : AXI4-Lite Spec §A3.3.1
+RTL_LOCATION    : (see appendix)
+t_violation     : 316   t_accept : 26   t_eval : 305
+
+VIOLATION_TYPE  : MODE-C
+CAUSAL_CLASS    : PREDICATE_ONLY
+VERDICT         : CONDITIONAL
+CONFIDENCE      : LOW
+
+MISSING_DEPS    : RVALID, RREADY
+FOUND_IN_PRED   : NONE
+
+DRIVER_PREDICATE  (signal: s_axi_rdata @ t_eval=305):
+  if (true)
+
+ACTIVE_TERMS:
+  s_axi_rdata = 570691989  @ t_eval=305  [source: rtl_driven]
+
+STRUCTURAL_DEFECTS:
+  NONE
+
+FIX_GUIDANCE:
+  [STRUCTURAL] RDATA has no RREADY gate in RTL driver:
+    Option A: gate the update on (!RREADY):
+      if (!RREADY) RDATA <= next_value;
+    Option B: register RDATA at transaction-accept time:
+      always_ff @(posedge clk) if (RREADY) RDATA_q <= RDATA;
+  Gate s_axi_rdata on: RVALID, RREADY  — add these signals as required conditions in the driver predicate.
+
+NOTES           : None
+────────────────────────────────────────────────────────────────────────

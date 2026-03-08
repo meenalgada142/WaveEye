@@ -1,0 +1,682 @@
+[
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 16701,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 16691,
+      "rvalid_dropped_cycle": 16701,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 16691 but dropped to 0 at cycle 16701 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 16741,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 16731,
+      "rvalid_dropped_cycle": 16741,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 16731 but dropped to 0 at cycle 16741 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 16781,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 16771,
+      "rvalid_dropped_cycle": 16781,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 16771 but dropped to 0 at cycle 16781 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 16821,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 16811,
+      "rvalid_dropped_cycle": 16821,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 16811 but dropped to 0 at cycle 16821 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 16861,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 16851,
+      "rvalid_dropped_cycle": 16861,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 16851 but dropped to 0 at cycle 16861 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 23171,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 23161,
+      "rvalid_dropped_cycle": 23171,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 23161 but dropped to 0 at cycle 23171 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 23211,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 23201,
+      "rvalid_dropped_cycle": 23211,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 23201 but dropped to 0 at cycle 23211 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_5",
+    "rule_name": "RVALID Deasserted Before Handshake",
+    "cycle": 23251,
+    "channel": "R",
+    "facts": {
+      "rvalid_asserted_cycle": 23241,
+      "rvalid_dropped_cycle": 23251,
+      "cycles_held": 10,
+      "handshake_completed": false
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+    "symptoms": "RVALID was asserted at cycle 23241 but dropped to 0 at cycle 23251 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+    "root_cause": "The logic incorrectly deasserted RVALID before seeing RREADY=1. This could be due to: (1) a timeout mechanism, (2) incorrect state machine logic, or (3) RVALID being driven by a signal that doesn't properly wait for RREADY.",
+    "recommendation": "Modify the logic to hold RVALID high continuously once asserted, until the handshake completes (RVALID && RREADY). Use a registered signal that only clears on handshake completion. Implementation: rvalid_reg <= set ? 1 : (valid && ready) ? 0 : rvalid_reg."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 16721,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 16681,
+      "second_ar_handshake_cycle": 16721,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 1
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 16681, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 16721. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 16761,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 16721,
+      "second_ar_handshake_cycle": 16761,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 2
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 16721, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 16761. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 16801,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 16761,
+      "second_ar_handshake_cycle": 16801,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 3
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 16761, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 16801. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 16841,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 16801,
+      "second_ar_handshake_cycle": 16841,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 4
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 16801, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 16841. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 19961,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 16841,
+      "second_ar_handshake_cycle": 19961,
+      "cycles_first_transaction_outstanding": 3120,
+      "total_violations_so_far": 5
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 16841, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 19961. The first transaction was outstanding for 3120 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 23191,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 23151,
+      "second_ar_handshake_cycle": 23191,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 6
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 23151, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 23191. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 23231,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 23191,
+      "second_ar_handshake_cycle": 23231,
+      "cycles_first_transaction_outstanding": 40,
+      "total_violations_so_far": 7
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 23191, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 23231. The first transaction was outstanding for 40 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_12",
+    "rule_name": "Multiple Outstanding Read Transactions",
+    "cycle": 26351,
+    "channel": "AR",
+    "facts": {
+      "first_ar_handshake_cycle": 23231,
+      "second_ar_handshake_cycle": 26351,
+      "cycles_first_transaction_outstanding": 3120,
+      "total_violations_so_far": 8
+    },
+    "severity": "ERROR",
+    "explanation": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+    "symptoms": "First AR handshake occurred at cycle 23231, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 26351. The first transaction was outstanding for 3120 cycles when this violation occurred.",
+    "root_cause": "The master issued a new read address before receiving the data from the previous read. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding transactions, (2) missing back-pressure handling in master read logic, (3) incorrect assumption that AXI4-Lite supports multiple outstanding reads like full AXI4, (4) read request queue not checking for pending responses.",
+    "recommendation": "Implement an outstanding transaction counter in the master: outstanding_reads <= outstanding_reads + (arvalid && arready) - (rvalid && rready). Before issuing ARVALID, check: if (outstanding_reads > 0) block_new_request. For AXI4-Lite, this means: wait for (RVALID && RREADY) before starting a new read. Add FSM state to track: IDLE -> AR_SENT -> WAIT_R_DATA -> IDLE."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 1311,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 1311,
+      "cycles_first_transaction_outstanding": 1030,
+      "total_violations_so_far": 1
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1311. The first transaction was outstanding for 1030 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 2331,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 2331,
+      "cycles_first_transaction_outstanding": 2050,
+      "total_violations_so_far": 2
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2331. The first transaction was outstanding for 2050 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 3361,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 3361,
+      "cycles_first_transaction_outstanding": 3080,
+      "total_violations_so_far": 3
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 3361. The first transaction was outstanding for 3080 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 4381,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 4381,
+      "cycles_first_transaction_outstanding": 4100,
+      "total_violations_so_far": 4
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 4381. The first transaction was outstanding for 4100 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 5411,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 5411,
+      "cycles_first_transaction_outstanding": 5130,
+      "total_violations_so_far": 5
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 5411. The first transaction was outstanding for 5130 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 6431,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 6431,
+      "cycles_first_transaction_outstanding": 6150,
+      "total_violations_so_far": 6
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 6431. The first transaction was outstanding for 6150 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 7461,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 7461,
+      "cycles_first_transaction_outstanding": 7180,
+      "total_violations_so_far": 7
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 7461. The first transaction was outstanding for 7180 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 8481,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 8481,
+      "cycles_first_transaction_outstanding": 8200,
+      "total_violations_so_far": 8
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 8481. The first transaction was outstanding for 8200 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 9511,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 9511,
+      "cycles_first_transaction_outstanding": 9230,
+      "total_violations_so_far": 9
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 9511. The first transaction was outstanding for 9230 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 10531,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 10531,
+      "cycles_first_transaction_outstanding": 10250,
+      "total_violations_so_far": 10
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 10531. The first transaction was outstanding for 10250 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 11561,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 11561,
+      "cycles_first_transaction_outstanding": 11280,
+      "total_violations_so_far": 11
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 11561. The first transaction was outstanding for 11280 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 12581,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 12581,
+      "cycles_first_transaction_outstanding": 12300,
+      "total_violations_so_far": 12
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 12581. The first transaction was outstanding for 12300 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 13611,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 13611,
+      "cycles_first_transaction_outstanding": 13330,
+      "total_violations_so_far": 13
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 13611. The first transaction was outstanding for 13330 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 14631,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 14631,
+      "cycles_first_transaction_outstanding": 14350,
+      "total_violations_so_far": 14
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 14631. The first transaction was outstanding for 14350 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 15661,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 15661,
+      "cycles_first_transaction_outstanding": 15380,
+      "total_violations_so_far": 15
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 15661. The first transaction was outstanding for 15380 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 16881,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 16881,
+      "cycles_first_transaction_outstanding": 16600,
+      "total_violations_so_far": 16
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 16881. The first transaction was outstanding for 16600 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 17911,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 17911,
+      "cycles_first_transaction_outstanding": 17630,
+      "total_violations_so_far": 17
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 17911. The first transaction was outstanding for 17630 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 18931,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 18931,
+      "cycles_first_transaction_outstanding": 18650,
+      "total_violations_so_far": 18
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 18931. The first transaction was outstanding for 18650 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 20081,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 20081,
+      "cycles_first_transaction_outstanding": 19800,
+      "total_violations_so_far": 19
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 20081. The first transaction was outstanding for 19800 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 21101,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 21101,
+      "cycles_first_transaction_outstanding": 20820,
+      "total_violations_so_far": 20
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 21101. The first transaction was outstanding for 20820 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 22131,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 22131,
+      "cycles_first_transaction_outstanding": 21850,
+      "total_violations_so_far": 21
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 22131. The first transaction was outstanding for 21850 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 23271,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 23271,
+      "cycles_first_transaction_outstanding": 22990,
+      "total_violations_so_far": 22
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 23271. The first transaction was outstanding for 22990 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 24301,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 24301,
+      "cycles_first_transaction_outstanding": 24020,
+      "total_violations_so_far": 23
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 24301. The first transaction was outstanding for 24020 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  },
+  {
+    "rule_id": "RULE_13",
+    "rule_name": "Multiple Outstanding Write Transactions",
+    "cycle": 25321,
+    "channel": "AW",
+    "facts": {
+      "first_write_start_cycle": 281,
+      "second_aw_handshake_cycle": 25321,
+      "cycles_first_transaction_outstanding": 25040,
+      "total_violations_so_far": 24
+    },
+    "severity": "ERROR",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "symptoms": "First write transaction started at cycle 281. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 25321. The first transaction was outstanding for 25040 cycles when this violation occurred.",
+    "root_cause": "The master issued a new write address before receiving the write response from the previous write. This violates AXI4-Lite's single-outstanding transaction rule. Common causes: (1) pipelining logic that doesn't track outstanding writes, (2) write buffer that queues multiple writes without checking for pending responses, (3) incorrect assumption that AXI4-Lite supports write pipelining like full AXI4, (4) missing dependency tracking between write channels and response channel.",
+    "recommendation": "Implement an outstanding write transaction tracker in the master: outstanding_writes <= outstanding_writes + ((awvalid && awready) || (wvalid && wready)) - (bvalid && bready). Before issuing AWVALID for a new write, verify: if (outstanding_writes > 0) block_new_write. For AXI4-Lite, maintain FSM: IDLE -> WRITE_ACTIVE -> WAIT_B_RESP -> IDLE. Only transition to IDLE after receiving B channel handshake."
+  }
+]

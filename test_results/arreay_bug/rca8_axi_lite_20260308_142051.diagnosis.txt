@@ -1,0 +1,48 @@
+────────────────────────────────────────────────────────────────
+WaveEye Diagnostic Summary
+────────────────────────────────────────────────────────────────
+Primary Failure    :
+  AXI4L_RVALID_UNPROMPTED  (AXI4-Lite Spec §A3.3.1)
+
+Confirmed Root Cause :
+  RVALID driver predicate missing required dependencies: ARVALID, ARREADY
+
+Severity           :
+  Handshake violation — AXI compliance failure
+
+Transactions Affected :
+  Protocol-visible failures     : 1
+  Structurally corrupted writes : 0
+────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────
+Causal Trace (Condensed)
+────────────────────────────────────────────────────────────────
+  Read transaction accepted
+    ARVALID handshake observed.
+
+  Spurious read response detected
+    RVALID asserted without a preceding read handshake (ARVALID∧RREADY never completed before cycle 931).
+
+  Control logic evaluated
+    FSM state analysis completed — scheduling conflict or missing enable condition identified in R-channel logic.
+
+  RVALID driver predicate identified  [PROOF]
+    RVALID = 0x1 @ t_eval=930
+    Active condition: if ((ARESETn) && (read_state == RESP))
+
+  MODE-A — Unexpected assertion  [PROOF]
+      D1 (assert): if ((ARESETn) && (read_state == RESP)) → 1  ★ ACTIVE
+    TRUE terms @ t_eval=930: (ARESETn)=TRUE, (read_state == RESP)=TRUE
+    ARESETn = 1  (master input — no RTL driver in slave)
+    read_state = 1  (registered state — no transition at this cycle)
+  ↳ signal fired without required protocol handshake.
+
+  Missing required AXI dependencies  [PROOF]
+    ✗  Absent from predicate: ARVALID, ARREADY
+    ARVALID = 1  (master input — no RTL driver in slave)
+    ARREADY = 0
+    → RVALID is driven by local FSM only — required handshake signals never gated.
+
+  Conclusion:
+  Protocol failure is structurally guaranteed — predicate contains no path to verify ARVALID, ARREADY.
+────────────────────────────────────────────────────────────────

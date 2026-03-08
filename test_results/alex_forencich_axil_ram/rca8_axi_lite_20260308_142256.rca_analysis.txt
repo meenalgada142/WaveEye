@@ -1,0 +1,36 @@
+────────────────────────────────────────────────────────────────────────
+WaveEye — Structural RCA Analysis
+────────────────────────────────────────────────────────────────────────
+RULE_ID         : RULE_13 — AXI4L_WRITE_RESPONSE_MISSING
+SPEC_REFERENCE  : AXI4-Lite Spec §A3.2.1
+RTL_LOCATION    : axil_ram.v:108
+t_violation     : 302   t_accept : ?   t_eval : 302
+
+VIOLATION_TYPE  : MODE-D
+CAUSAL_CLASS    : STRUCTURALLY_CAUSED
+VERDICT         : CONDITIONAL
+CONFIDENCE      : LOW
+
+MISSING_DEPS    : NONE
+FOUND_IN_PRED   : NONE
+
+DRIVER_PREDICATE  (signal: ? @ t_eval=302):
+  if ((not available))
+
+ACTIVE_TERMS:
+  ? = ?  @ t_eval=None  [source: rtl_driven]
+
+STRUCTURAL_DEFECTS:
+  WRITE_ALIASING_BUG/: - → mem  at -
+  WRITE_ALIASING_BUG/: - → mem  at -
+  LANE_BIJECTION_VIOLATION/: - → mem  at -
+  LANE_BIJECTION_VIOLATION/: - → mem  at -
+
+FIX_GUIDANCE:
+  Fix non-bijective mapping: mem <= -;  [at - — one-to-one mapping required]
+  Fix non-bijective mapping: mem <= -;  [at - — one-to-one mapping required]
+  Fix non-bijective mapping: mem <= -;  [at - — one-to-one mapping required]
+  Fix non-bijective mapping: mem <= -;  [at - — one-to-one mapping required]
+
+NOTES           : None
+────────────────────────────────────────────────────────────────────────

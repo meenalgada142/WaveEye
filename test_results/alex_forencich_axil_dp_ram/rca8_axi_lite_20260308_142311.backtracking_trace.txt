@@ -1,0 +1,72 @@
+----------------------------------------------------------------
+BACKTRACK TRACE (Human Reconstruction)
+----------------------------------------------------------------
+Protocol Rule : RULE_6
+Signal        : RDATA
+Violation     : PROTOCOL/TEMPORAL_VIOLATION
+Cycle         : 14672
+----------------------------------------------------------------
+
+Step 1 -- Obligation Created:
+  The protocol engine registered a RULE_6 obligation at cycle 14672
+  after detecting that BVALID was asserted at cycle 14647 but dropped
+  to 0 at cycle 14672 (after 25 cycles) without BREADY ever being high.
+  The transaction was prematurely withdrawn. became true. Under
+  AXI4-Lite, this event requires the slave to assert RDATA within the
+  defined response window. The obligation was recorded because RDATA
+  was observed at 0 throughout the window.
+
+Step 2 -- Expected Driver:
+  The engine queried the RTL logic table for all always-block
+  assignments to RDATA. It identified at least one driver (D1) whose
+  condition `enabling condition for RDATA` should have asserted RDATA=1
+  when the enabling event occurred. The engine confirmed that the
+  enabling predicate was true in the waveform at the obligation cycle.
+
+Step 3 -- Predicate Evaluation:
+  The engine evaluated all drivers for RDATA at the obligation cycle.
+  D1 (condition: `enabling condition for RDATA`) evaluated TRUE — it
+  correctly produced RDATA=1. However, driver D2 (condition: `broader
+  condition on RDATA`) also evaluated TRUE. Because D2 appears AFTER D1
+  in the same always-block and D2's condition is a strict superset of
+  D1's condition, D2 fires in every cycle that D1 fires — and the last
+  non-blocking assignment wins. D2 assigned RDATA=0, overwriting D1's
+  assignment before the clock edge.
+
+Step 4 -- State Dependency:
+  The engine examined the terms of D2's condition (`broader condition
+  on RDATA`) to determine whether any term depended on a registered
+  state value. The FSM state register (read_state / w_state) was
+  identified as a control term. At the obligation cycle, the FSM state
+  held a value (e.g., IDLE) that made D2's condition continuously true,
+  ensuring D2 always overwrote D1 whenever the master asserted the
+  enabling signal.
+
+Step 5 -- Causal Loop Detected:
+  The engine detected a cyclic dependency on signal 'RDATA'. The FSM
+  cannot exit the state that keeps D2's condition permanently active
+  because doing so requires RDATA to assert — which is the signal being
+  blocked. This is a self-reinforcing loop: the FSM state gate prevents
+  RDATA from asserting, and RDATA cannot assert while the FSM state
+  gate is active. No external stimulus can break this loop without an
+  RTL fix.
+
+Step 6 -- Terminal Cause:
+  The backtrack terminates at the RTL always-block assignment ordering.
+  D2's broad condition is a fixed structural property of the RTL: it
+  evaluates true whenever D1 evaluates true. No waveform stimulus, no
+  testbench timing adjustment, and no protocol ordering can prevent D2
+  from overwriting D1 — both fire simultaneously in the same simulation
+  delta, and the assignment order in the always-block is the invariant
+  that determines which one wins. The terminal cause is a structural
+  RTL coding defect: the broad default driver is placed after the
+  specific enabling driver in the same always-block.
+
+----------------------------------------------------------------
+ROOT MECHANISM:
+  The RTL always-block for RDATA assigns the enabling value (=1) in
+  condition D1 and then unconditionally overwrites it with the default
+  value (=0) in condition D2, whose predicate is a strict superset of
+  D1's — making RDATA permanently stuck at 0 whenever the enabling
+  condition is true.
+----------------------------------------------------------------

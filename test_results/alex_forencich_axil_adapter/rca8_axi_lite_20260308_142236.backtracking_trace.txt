@@ -1,0 +1,35 @@
+----------------------------------------------------------------
+BACKTRACK TRACE (Human Reconstruction)
+----------------------------------------------------------------
+Protocol Rule : N/A
+Signal        : target signal
+Violation     : INCONCLUSIVE/NO_EVIDENCE
+Cycle         : N/A
+----------------------------------------------------------------
+
+Step 1 -- Obligation Created:
+  A protocol violation was observed but the specific RTL path could not
+  be isolated.
+
+Step 2 -- Expected Driver:
+  The engine searched the RTL logic table for drivers of the failing
+  signal but found insufficient coverage.
+
+Step 3 -- Predicate Evaluation:
+  No driver condition was confirmed false — either the drivers are
+  missing from the CSV or the signal is a primary input.
+
+Step 4 -- State Dependency:
+  No registered-state dependency chain was traceable from the failing
+  signal.
+
+Step 5 -- Terminal Cause:
+  Backtracking terminated due to missing RTL driver data. Provide a
+  complete true_drivers CSV to enable deeper tracing.
+
+----------------------------------------------------------------
+ROOT MECHANISM:
+  Insufficient RTL driver coverage prevented the engine from isolating
+  the causal mechanism for target signal; the defect is observed but
+  not yet proven.
+----------------------------------------------------------------

@@ -1,0 +1,20 @@
+===============================================================================
+  RTL FIX ADVISOR — SURGICAL CORRECTION GUIDANCE
+===============================================================================
+  Root Cause     : INCONCLUSIVE/NO_EVIDENCE
+  Primary Signal : target signal
+  Rule           : N/A
+  Cycle          : N/A
+===============================================================================
+
+  INCONCLUSIVE — FIX GUIDANCE NOT AVAILABLE
+
+  No structural root cause was isolated. Fix guidance requires a proven
+  defect. Provide the following inputs and re-run the analysis:
+
+    1. RTL drivers CSV covering all signals reported as stuck or violated.
+    2. FSM state encoding file (.fsm_encodings.json) in the analysis directory.
+    3. Extended waveform covering at least 3 complete transactions.
+    4. Violations JSON from axil4 (or equivalent protocol checker).
+
+===============================================================================

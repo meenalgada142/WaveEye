@@ -1,0 +1,74 @@
+[
+  {
+    "class": "WIDTH_CONSERVATION_VIOLATION",
+    "subtype": "WIDTH_EXTENSION_WITHOUT_SEMANTIC",
+    "always_block_id": 2,
+    "rtl_line": 172,
+    "source_signal": "dout",
+    "destination_signal": "RDATA",
+    "inferred_src_width": null,
+    "inferred_dst_width": null,
+    "transform_type": "EXTENSION",
+    "const_padding_bits": 24,
+    "impact": "Width conservation violated.\n'RDATA' zero/constant-extends 'dout' by 24 bit(s) with no defined semantic.\nThe added bits carry no information \u2014 the transformation changes the numeric value without specifying intent.\nLegal extensions require an explicit semantic: address scaling, packing rule, or sign extension.\nWithout this, downstream logic may misinterpret the value.",
+    "source": "axi_lite_fifo_wrapper.sv:172"
+  },
+  {
+    "class": "WIDTH_CONSERVATION_VIOLATION",
+    "subtype": "WIDTH_EXTENSION_WITHOUT_SEMANTIC",
+    "always_block_id": 2,
+    "rtl_line": 181,
+    "source_signal": "count",
+    "destination_signal": "RDATA",
+    "inferred_src_width": null,
+    "inferred_dst_width": null,
+    "transform_type": "EXTENSION",
+    "const_padding_bits": 25,
+    "impact": "Width conservation violated.\n'RDATA' zero/constant-extends 'count' by 25 bit(s) with no defined semantic.\nThe added bits carry no information \u2014 the transformation changes the numeric value without specifying intent.\nLegal extensions require an explicit semantic: address scaling, packing rule, or sign extension.\nWithout this, downstream logic may misinterpret the value.",
+    "source": "axi_lite_fifo_wrapper.sv:181"
+  },
+  {
+    "class": "WIDTH_CONSERVATION_VIOLATION",
+    "subtype": "WIDTH_EXTENSION_WITHOUT_SEMANTIC",
+    "always_block_id": 2,
+    "rtl_line": 186,
+    "source_signal": "fifo_level",
+    "destination_signal": "RDATA",
+    "inferred_src_width": null,
+    "inferred_dst_width": null,
+    "transform_type": "EXTENSION",
+    "const_padding_bits": 27,
+    "impact": "Width conservation violated.\n'RDATA' zero/constant-extends 'fifo_level' by 27 bit(s) with no defined semantic.\nThe added bits carry no information \u2014 the transformation changes the numeric value without specifying intent.\nLegal extensions require an explicit semantic: address scaling, packing rule, or sign extension.\nWithout this, downstream logic may misinterpret the value.",
+    "source": "axi_lite_fifo_wrapper.sv:186"
+  },
+  {
+    "class": "INVERTIBILITY_VIOLATION",
+    "subtype": "SYNTHETIC_DATA",
+    "always_block_id": 2,
+    "rtl_line": 172,
+    "lhs": "RDATA",
+    "rhs": "{24'b0, dout}",
+    "details": "Concat injects constant literal(s) [\"24'b0\"] into output fields that carry no input signal. Those output bits are fabricated \u2014 they have no corresponding input to invert back to.",
+    "impact": "Transformation cannot be reversed; not a legal transport"
+  },
+  {
+    "class": "INVERTIBILITY_VIOLATION",
+    "subtype": "SYNTHETIC_DATA",
+    "always_block_id": 2,
+    "rtl_line": 181,
+    "lhs": "RDATA",
+    "rhs": "{25'b0, count, full, empty}",
+    "details": "Concat injects constant literal(s) [\"25'b0\"] into output fields that carry no input signal. Those output bits are fabricated \u2014 they have no corresponding input to invert back to.",
+    "impact": "Transformation cannot be reversed; not a legal transport"
+  },
+  {
+    "class": "INVERTIBILITY_VIOLATION",
+    "subtype": "SYNTHETIC_DATA",
+    "always_block_id": 2,
+    "rtl_line": 186,
+    "lhs": "RDATA",
+    "rhs": "{27'b0, fifo_level}",
+    "details": "Concat injects constant literal(s) [\"27'b0\"] into output fields that carry no input signal. Those output bits are fabricated \u2014 they have no corresponding input to invert back to.",
+    "impact": "Transformation cannot be reversed; not a legal transport"
+  }
+]

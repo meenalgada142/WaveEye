@@ -1,0 +1,18 @@
+[
+  {
+    "rule_id": "RULE_10",
+    "rule_name": "Read Response Without Read Request",
+    "cycle": 931,
+    "channel": "R",
+    "facts": {
+      "rvalid_cycle": 931,
+      "ar_handshake_seen": false,
+      "last_ar_cycle": null
+    },
+    "severity": "ERROR",
+    "explanation": "RVALID was asserted without a preceding read address handshake. Per AXI4-Lite spec, a read data response must only occur after a completed read address handshake (ARVALID && ARREADY).",
+    "symptoms": "RVALID went high at cycle 931, but no AR channel handshake has been observed. The slave is providing read data without receiving a read request from the master.",
+    "root_cause": "The slave logic is generating read responses independently of read requests. Possible causes: (1) slave logic error where RVALID is tied to internal events rather than AR handshakes, (2) reset/initialization issue where slave starts with RVALID high, (3) crosstalk or incorrect signal routing, (4) state machine bug in slave.",
+    "recommendation": "Ensure RVALID is only asserted after: (1) AR handshake is detected, (2) read operation completes, (3) previous R handshake cleared the response. Add AR handshake tracking: ar_received <= (arvalid && arready) || (ar_received && !(rvalid && rready))."
+  }
+]

@@ -1,0 +1,31 @@
+────────────────────────────────────────────────────────────────
+WaveEye Diagnostic Summary
+────────────────────────────────────────────────────────────────
+Primary Failure    :
+  AXI4L_BVALID_PERSISTENCE  (AXI4-Lite Spec §A3.1.2)
+
+Confirmed Root Cause :
+  Always-block NBA override on RDATA — asserting assignment overwritten
+
+Severity           :
+  Handshake violation — AXI compliance failure
+
+Transactions Affected :
+  Protocol-visible failures     : 100
+  Structurally corrupted writes : 0
+────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────
+Causal Trace (Condensed)
+────────────────────────────────────────────────────────────────
+  Write transaction accepted
+    BVALID handshake observed.
+
+  BVALID dropped before write handshake completed
+    BVALID de-asserted before RDATA was received — violates AXI4-Lite §A3.1.2 persistence rule (must hold until READY).
+
+  Control logic evaluated
+    FSM state analysis completed — scheduling conflict or missing enable condition identified in B-channel logic.
+
+  Conclusion:
+  Protocol failure is structurally independent — no RTL datapath defect confirmed.
+────────────────────────────────────────────────────────────────

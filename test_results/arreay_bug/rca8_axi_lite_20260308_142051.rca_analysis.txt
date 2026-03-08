@@ -1,0 +1,45 @@
+────────────────────────────────────────────────────────────────────────
+WaveEye — Structural RCA Analysis
+────────────────────────────────────────────────────────────────────────
+RULE_ID         : RULE_10 — AXI4L_RVALID_UNPROMPTED
+SPEC_REFERENCE  : AXI4-Lite Spec §A3.3.1
+RTL_LOCATION    : axi_lite_fifo_wrapper.sv:172
+t_violation     : 931   t_accept : 280   t_eval : 930
+
+VIOLATION_TYPE  : MODE-A
+CAUSAL_CLASS    : STRUCTURALLY_CAUSED
+VERDICT         : CONDITIONAL
+CONFIDENCE      : MEDIUM
+
+MISSING_DEPS    : ARVALID, ARREADY
+FOUND_IN_PRED   : NONE
+
+DRIVER_PREDICATE  (signal: RVALID @ t_eval=930):
+  if ((ARESETn) && (read_state == RESP))
+
+ACTIVE_TERMS:
+  RVALID = 1  @ t_eval=930  [source: rtl_driven]
+  ARESETn = 1  @ t_eval=930  [source: master_input]
+  read_state = 1  @ t_eval=930  [source: rtl_driven]
+  ARREADY = 0  @ t_eval=930  [source: master_input]
+  ARVALID = 1  @ t_eval=930  [source: master_input]
+
+STRUCTURAL_DEFECTS:
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: dout → RDATA  at 172
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: count → RDATA  at 181
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: fifo_level → RDATA  at 186
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 172
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 181
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 186
+
+FIX_GUIDANCE:
+  Widen destination: RDATA <= dout;  [at 172 — source is wider than destination]
+  Widen destination: RDATA <= count;  [at 181 — source is wider than destination]
+  Widen destination: RDATA <= fifo_level;  [at 186 — source is wider than destination]
+  Make transform reversible: - <= -;  [at 172 — current operation loses information]
+  Make transform reversible: - <= -;  [at 181 — current operation loses information]
+  Make transform reversible: - <= -;  [at 186 — current operation loses information]
+  Gate RVALID on: ARVALID, ARREADY  — add these signals as required conditions in the driver predicate.
+
+NOTES           : None
+────────────────────────────────────────────────────────────────────────

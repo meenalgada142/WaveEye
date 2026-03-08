@@ -1,0 +1,47 @@
+────────────────────────────────────────────────────────────────────────
+WaveEye — Structural RCA Analysis
+────────────────────────────────────────────────────────────────────────
+RULE_ID         : RULE_13 — AXI4L_WRITE_RESPONSE_MISSING
+SPEC_REFERENCE  : AXI4-Lite Spec §A3.2.1
+RTL_LOCATION    : axi_lite_fifo_wrapper.sv:172
+t_violation     : 1312   t_accept : 1311   t_eval : 1312
+
+VIOLATION_TYPE  : MODE-B
+CAUSAL_CLASS    : STRUCTURALLY_CAUSED
+VERDICT         : INTERMITTENT
+CONFIDENCE      : MEDIUM
+
+MISSING_DEPS    : BVALID, BREADY
+FOUND_IN_PRED   : AWVALID, WVALID
+
+DRIVER_PREDICATE  (signal: AWREADY @ t_eval=1312):
+  if (((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID)))
+
+ACTIVE_TERMS:
+  AWREADY = 1  @ t_eval=1312  [source: rtl_driven]
+  ARESETn = 1  @ t_eval=1312  [source: master_input]
+  write_state = 1  @ t_eval=1312  [source: rtl_driven]
+  AWVALID = 1  @ t_eval=1312  [source: master_input]
+  BREADY = 1  @ t_eval=1312  [source: master_input]
+  BVALID = 0  @ t_eval=1312  [source: master_input]
+  WVALID = 1  @ t_eval=1312  [source: master_input]
+
+STRUCTURAL_DEFECTS:
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: dout → RDATA  at 172
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: count → RDATA  at 181
+  WIDTH_CONSERVATION_VIOLATION/WIDTH_EXTENSION_WITHOUT_SEMANTIC: fifo_level → RDATA  at 186
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 172
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 181
+  INVERTIBILITY_VIOLATION/SYNTHETIC_DATA: - → -  at 186
+
+FIX_GUIDANCE:
+  Widen destination: RDATA <= dout;  [at 172 — source is wider than destination]
+  Widen destination: RDATA <= count;  [at 181 — source is wider than destination]
+  Widen destination: RDATA <= fifo_level;  [at 186 — source is wider than destination]
+  Make transform reversible: - <= -;  [at 172 — current operation loses information]
+  Make transform reversible: - <= -;  [at 181 — current operation loses information]
+  Make transform reversible: - <= -;  [at 186 — current operation loses information]
+  Gate AWREADY on: BVALID, BREADY  — add these signals as required conditions in the driver predicate.
+
+NOTES           : Intra-cycle scheduling cancellation at cycle 1312
+────────────────────────────────────────────────────────────────────────

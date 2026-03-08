@@ -1,0 +1,40 @@
+[
+  {
+    "type": "DATAPATH_VIOLATION",
+    "class": "WRITE_ALIASING_BUG",
+    "memory": "mem",
+    "always_block_id": null,
+    "expected": "varies with iterator",
+    "actual": "0 (constant \u2014 does not depend on loop iterator)",
+    "impact": "Slice base in 'mem[j]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+    "source": "axil_ram.v:108"
+  },
+  {
+    "type": "DATAPATH_VIOLATION",
+    "class": "WRITE_ALIASING_BUG",
+    "memory": "mem",
+    "always_block_id": 2,
+    "expected": "varies with iterator",
+    "actual": "0 (constant \u2014 does not depend on loop iterator)",
+    "impact": "Slice base in 'mem[s_axil_awaddr_valid][0 +: WORD_SIZE]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+    "source": "axil_ram.v:138"
+  },
+  {
+    "class": "LANE_BIJECTION_VIOLATION",
+    "memory": "mem",
+    "always_block_id": null,
+    "expected": "mem[addr][i*0 +: 0]",
+    "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+    "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:108.",
+    "source": "axil_ram.v:108"
+  },
+  {
+    "class": "LANE_BIJECTION_VIOLATION",
+    "memory": "mem",
+    "always_block_id": 2,
+    "expected": "mem[addr][i*0 +: 0]",
+    "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+    "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:138.",
+    "source": "axil_ram.v:138"
+  }
+]

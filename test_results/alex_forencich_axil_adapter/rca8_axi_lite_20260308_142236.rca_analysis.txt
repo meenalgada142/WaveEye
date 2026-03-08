@@ -1,0 +1,30 @@
+────────────────────────────────────────────────────────────────────────
+WaveEye — Structural RCA Analysis
+────────────────────────────────────────────────────────────────────────
+RULE_ID         :  — 
+SPEC_REFERENCE  : AXI4-Lite Spec §unknown
+RTL_LOCATION    : (see appendix)
+t_violation     : ?   t_accept : ?   t_eval : ?
+
+VIOLATION_TYPE  : MODE-D
+CAUSAL_CLASS    : PREDICATE_ONLY
+VERDICT         : CONDITIONAL
+CONFIDENCE      : LOW
+
+MISSING_DEPS    : NONE
+FOUND_IN_PRED   : NONE
+
+DRIVER_PREDICATE  (signal: ? @ t_eval=?):
+  if ((not available))
+
+ACTIVE_TERMS:
+  ? = ?  @ t_eval=None  [source: rtl_driven]
+
+STRUCTURAL_DEFECTS:
+  NONE
+
+FIX_GUIDANCE:
+  No specific RTL fix identified — review predicate logic manually.
+
+NOTES           : Root cause inconclusive — insufficient waveform evidence
+────────────────────────────────────────────────────────────────────────
