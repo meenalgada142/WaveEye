@@ -11,7 +11,8 @@
 
 # setuptools/distutils build tree
 build/
-dist/
+# dist/ wheels are committed for distribution (see dist/)
+# dist/
 
 # Egg / wheel metadata
 *.egg-info/

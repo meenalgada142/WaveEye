@@ -176,33 +176,19 @@ pip install dist/waveeye_axi_lite-1.0.0-cp312-cp312-win_amd64.whl
 pip install dist/waveeye_axi_lite-1.0.0-cp310-cp310-linux_x86_64.whl
 ```
 
-After installation, run from anywhere:
+After installation, launch the interactive CLI:
 
 ```bash
-waveeye --rtl path/to/design.sv --vcd path/to/sim.vcd
+python main.py
 ```
 
-### Option B — Standalone executable (no Python required)
-
-```bash
-python build_release.py --standalone
-# Output: standalone/waveeye/waveeye.exe  (Windows)
-#         standalone/waveeye/waveeye      (Linux)
-```
-
-Run on any machine without installing Python:
-
-```bash
-./standalone/waveeye/waveeye --rtl design.sv --vcd sim.vcd
-```
-
-### Option C — Run from source
+### Option B — Run from source
 
 ```bash
 git clone https://github.com/meenalgada142/WaveEye.git
 cd WaveEye
 pip install pyslang
-python main.py --rtl path/to/design.sv --vcd path/to/sim.vcd
+python main.py
 ```
 
 ---
