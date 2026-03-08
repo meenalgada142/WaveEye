@@ -128,18 +128,18 @@ DATAPATH — the symptom and the root cause are reported separately.
 WaveEye has been validated on 6 designs with **zero false positives** on clean waveforms.
 Full diagnosis output for each is in [`test_results/`](test_results/).
 
-| Example | Design | Bug | Violations | Result | Time |
-|---|---|---|---|---|---|
-| `bvalibug` | `axi_lite_fifo_wrapper.sv` | BVALID scheduling conflict | 40 | `AXI4L_WRITE_RESPONSE_MISSING` | 3.6 s |
-| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | RVALID asserted without AR handshake | 1 | `AXI4L_RVALID_UNPROMPTED` | 1.8 s |
-| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | RDATA mutated during RVALID window | 1 | `AXI4L_RDATA_STABILITY` | 0.2 s |
-| `axil_adapter` | [Alex Forencich axil_adapter](https://github.com/alexforencich/verilog-axi) | No bugs introduced (baseline) | 0 | **PASS** | 8.9 s |
-| `axil_ram` | [Alex Forencich axil_ram](https://github.com/alexforencich/verilog-axi) | Bug introduced: NBA override cancels BVALID | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | 0.3 s |
-| `axil_dp_ram` | [Alex Forencich axil_dp_ram](https://github.com/alexforencich/verilog-axi) | Bug introduced: BVALID dropped before BREADY | 100 | `AXI4L_BVALID_PERSISTENCE` | 3.5 s |
+| Example | Design | Bug Introduced | Violations | Result | Root Cause | Time |
+|---|---|---|---|---|---|---|
+| `bvalibug` | `axi_lite_fifo_wrapper.sv` | BVALID scheduling conflict | 40 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID | 3.6 s |
+| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | RVALID asserted without AR handshake | 1 | `AXI4L_RVALID_UNPROMPTED` | RVALID driver predicate missing ARVALID/ARREADY | 1.8 s |
+| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | RDATA mutated during RVALID window | 1 | `AXI4L_RDATA_STABILITY` | RDATA driver has no RREADY gate | 0.2 s |
+| `axil_adapter` | [Alex Forencich axil_adapter](https://github.com/alexforencich/verilog-axi) | None — clean baseline | 0 | **PASS** | No defects detected | 8.9 s |
+| `axil_ram` | [Alex Forencich axil_ram](https://github.com/alexforencich/verilog-axi) | NBA override cancels BVALID | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID + WRITE_ALIASING / LANE_BIJECTION on `mem` | 0.3 s |
+| `axil_dp_ram` | [Alex Forencich axil_dp_ram](https://github.com/alexforencich/verilog-axi) | NBA override drops BVALID before BREADY | 100 | `AXI4L_BVALID_PERSISTENCE` | Always-block NBA override on RDATA + WRITE_ALIASING / LANE_BIJECTION on `mem` | 3.5 s |
 
 > The last three test cases use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi)
-> reference designs. These are production-quality designs — bugs were deliberately introduced by us
-> to validate WaveEye's detection capability.
+> reference designs — production-quality RTL. Bugs were deliberately introduced by us into `axil_ram`
+> and `axil_dp_ram` to validate detection. `axil_adapter` was run clean to confirm zero false positives.
 
 ### Sample `diagnosis.txt` output (bvalibug)
 
