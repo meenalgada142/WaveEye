@@ -46,7 +46,7 @@ When prompted:
 | `axi_lite_fifo_wrapper` (BVALID bug) | `AXI4L_WRITE_RESPONSE_MISSING` | 40 |
 | `axi_lite_fifo_wrapper` (RVALID bug) | `AXI4L_RVALID_UNPROMPTED` | 1 |
 | `axi_lite_slave_v1_0` | `AXI4L_RDATA_STABILITY` | 1 |
-| Alex Forencich `axil_adapter` — clean baseline | `MASK_CONSERVATION_VIOLATION` (structural, 0 protocol violations) | 0 protocol |
+| Alex Forencich `axil_adapter` — clean baseline | **0 false positives** — 0 protocol violations on clean design | 0 |
 | Alex Forencich `axil_ram` — bug introduced | `AXI4L_WRITE_RESPONSE_MISSING` | 56 |
 | Alex Forencich `axil_dp_ram` — bug introduced | `AXI4L_BVALID_PERSISTENCE` | 100 |
 
