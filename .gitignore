@@ -34,6 +34,14 @@ IR_backtracking/rca_resolver.py
 IR_backtracking/rca_core/
 IR_backtracking/deep_backtrack.py
 IR_backtracking/cyclic_dependency_analyzer.py
+IR_backtracking/IR_backtracking.py
+IR_backtracking/alias_engine.py
+IR_backtracking/temporal_predicate_analysis.py
+IR_backtracking/fsm_illegal_state.py
+IR_backtracking/inter_fsm.py
+IR_backtracking/grouping.py
+IR_backtracking/extract_fsm_encodings.py
+IR_backtracking/reports/causal_pruner.py
 
 # ── Archive / legacy code ─────────────────────────────────────────────────
 _archive_main_tool/
