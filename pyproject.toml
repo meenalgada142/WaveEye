@@ -9,6 +9,8 @@ description = "WaveEye AXI-Lite Protocol Root-Cause Analyzer"
 requires-python = ">=3.10"
 dependencies = [
     "pyslang>=5.0",
+    "vcdvcd>=2.0",
+    "pandas>=1.5",
 ]
 
 [project.scripts]
