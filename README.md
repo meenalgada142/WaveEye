@@ -119,14 +119,14 @@ When a structural defect is proven to have caused protocol violations, it is rep
 WaveEye has been validated on 6 designs with **zero false positives** on clean waveforms.
 Full diagnosis output for each is in [`test_results/`](test_results/).
 
-| Example | Design | Bug Introduced | Violations | Result | Root Cause | Time |
-|---------|--------|----------------|------------|--------|------------|------|
-| `bvalibug` | `axi_lite_fifo_wrapper.sv` | BVALID scheduling conflict | 40 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID | 3.6 s |
-| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | RVALID asserted without AR handshake | 1 | `AXI4L_RVALID_UNPROMPTED` | RVALID driver predicate missing ARVALID/ARREADY | 1.8 s |
-| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | RDATA mutated during RVALID window | 1 | `AXI4L_RDATA_STABILITY` | RDATA driver has no RREADY gate | 0.2 s |
-| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | None — clean baseline | 0 | **0 false positives** — no protocol violations on clean design | Structural pattern detected (data replication in adapter — intentional) | 36 s |
-| `axil_ram` | [Alex Forencich axil\_ram](https://github.com/alexforencich/verilog-axi) | NBA override cancels BVALID | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | NBA override on BVALID + WRITE\_ALIASING/LANE\_BIJECTION on `mem` | 0.3 s |
-| `axil_dp_ram` | [Alex Forencich axil\_dp\_ram](https://github.com/alexforencich/verilog-axi) | NBA override drops BVALID before BREADY | 100 | `AXI4L_BVALID_PERSISTENCE` | NBA override on RDATA + WRITE\_ALIASING/LANE\_BIJECTION on `mem` | 3.5 s |
+| Example | Design | Protocol Violations | Protocol-visible Failures | Result | Confirmed Root Cause | Time |
+|---------|--------|--------------------|-----------------------------|--------|----------------------|------|
+| `bvalibug` | `axi_lite_fifo_wrapper.sv` | 40 | 2 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on RDATA — asserting assignment overwritten | 36 s |
+| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | 1 | 1 | `AXI4L_RVALID_UNPROMPTED` | Always-block NBA override on RDATA — asserting assignment overwritten | 8 s |
+| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | 1 | 1 | `AXI4L_RDATA_STABILITY` | RDATA driver has no RREADY gate — payload advances freely during backpressure | 1.8 s |
+| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | 0 | 0 | **0 false positives** | No protocol violations on clean design | 36 s |
+| `axil_ram` | [Alex Forencich axil\_ram](https://github.com/alexforencich/verilog-axi) | 56 | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID — asserting assignment overwritten | 1.9 s |
+| `axil_dp_ram` | [Alex Forencich axil\_dp\_ram](https://github.com/alexforencich/verilog-axi) | 100 | 100 | `AXI4L_BVALID_PERSISTENCE` | Always-block NBA override on RDATA — asserting assignment overwritten | 17.7 s |
 
 > The last three test cases use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs — production-quality RTL. Each design was tested both clean (no bugs) and with bugs deliberately introduced by us. The clean runs confirmed **zero false positives** on protocol rules. The bug-introduced runs (`axil_ram`, `axil_dp_ram`) were correctly detected.
 

@@ -41,14 +41,14 @@ When prompted:
 
 ### Validated On 6 Designs
 
-| Design | Result | Violations |
-|--------|--------|------------|
-| `axi_lite_fifo_wrapper` (BVALID bug) | `AXI4L_WRITE_RESPONSE_MISSING` | 40 |
-| `axi_lite_fifo_wrapper` (RVALID bug) | `AXI4L_RVALID_UNPROMPTED` | 1 |
-| `axi_lite_slave_v1_0` | `AXI4L_RDATA_STABILITY` | 1 |
-| Alex Forencich `axil_adapter` — clean baseline | **0 false positives** — 0 protocol violations on clean design | 0 |
-| Alex Forencich `axil_ram` — bug introduced | `AXI4L_WRITE_RESPONSE_MISSING` | 56 |
-| Alex Forencich `axil_dp_ram` — bug introduced | `AXI4L_BVALID_PERSISTENCE` | 100 |
+| Design | Result | Violations | Confirmed Root Cause |
+|--------|--------|------------|----------------------|
+| `axi_lite_fifo_wrapper` (BVALID bug) | `AXI4L_WRITE_RESPONSE_MISSING` | 40 | Always-block NBA override on RDATA |
+| `axi_lite_fifo_wrapper` (RVALID bug) | `AXI4L_RVALID_UNPROMPTED` | 1 | Always-block NBA override on RDATA |
+| `axi_lite_slave_v1_0` | `AXI4L_RDATA_STABILITY` | 1 | RDATA driver has no RREADY gate |
+| Alex Forencich `axil_adapter` — clean baseline | **0 false positives** | 0 | No protocol violations on clean design |
+| Alex Forencich `axil_ram` — bug introduced | `AXI4L_WRITE_RESPONSE_MISSING` | 56 | Always-block NBA override on BVALID |
+| Alex Forencich `axil_dp_ram` — bug introduced | `AXI4L_BVALID_PERSISTENCE` | 100 | Always-block NBA override on RDATA |
 
 Example inputs are in the [examples/](https://github.com/meenalgada142/WaveEye/tree/main/examples) folder.
 
