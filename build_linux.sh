@@ -49,6 +49,15 @@ rm -rf "$DIST/temp_dist"
 # ── Mark executable ──────────────────────────────────────────
 chmod +x "$OUT/waveeye"
 
+# ── Remove stale Cython .so files that shadow updated .py source ──────────
+echo "[BUILD] Removing shadowed Cython .so files..."
+find "$OUT/_internal" -name "*.so" | while read sofile; do
+    pyfile="${sofile%.cpython-*-linux-gnu.so}.py"
+    if [ -f "$pyfile" ]; then
+        rm "$sofile"
+    fi
+done
+
 # ── Zip it ───────────────────────────────────────────────────
 echo "[BUILD] Creating zip archive..."
 cd "$DIST"
