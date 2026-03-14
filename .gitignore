@@ -1,17 +1,12 @@
-# ── Closed-source source files ────────────────────────────────────────────
-# All Python source and build scripts are proprietary — not distributed
-IR_backtracking/
-Preprocessing/
-main.py
-build_release.py
-setup_cython.py
-pyproject.toml
+# ── Distribution artifacts ─────────────────────────────────────────────────
 dist/
 MAIN_TOOL_ARCHITECTURE.md
 MAIN_TOOL_CALL_GRAPH.md
 
 # ── Cython build artefacts ────────────────────────────────────────────────
 *.pyd
+*.pyd.bak
+*.pyd.test_bak
 *.so
 **/*.c
 **/*.html
