@@ -1,0 +1,7 @@
+# WaveEye runtime dependencies
+# These are required to run WaveEye from source (python main.py).
+# Not needed when using the standalone executable.
+
+vcdvcd>=2.0.0
+pandas>=1.5.0
+pyslang>=4.0.0

@@ -73,9 +73,8 @@ All outputs are written to `~/WaveEye/outputs/userN/analysis/`:
 | File | Contents |
 |------|----------|
 | **`*.diagnosis.txt`** | **Your main result — start here** |
-| `*.fix_guidance.txt` | RTL fix recommendations |
-| `*.backtracking_trace.txt` | Causal trace from symptom to root cause |
-| `*.proof.appendix.txt` | Full analysis report |
+| `*.rca_analysis.txt` | Full causal analysis report |
+| `*.proof.appendix.txt` | Complete evidence appendix |
 | `*.proof.json` | Machine-readable root cause verdict |
 
 > **`diagnosis.txt` is your final output summary.** It contains the primary failure, confirmed root cause, severity, and affected transactions.
@@ -116,19 +115,20 @@ When a structural defect is proven to have caused protocol violations, it is rep
 
 ## Validated Test Cases
 
-WaveEye has been validated on 6 designs with **zero false positives** on clean waveforms.
-Full diagnosis output for each is in [`test_results/`](test_results/).
+WaveEye has been validated on 7 designs with **zero false positives** on clean waveforms.
+Full terminal output for each run is in [`test_results/`](test_results/).
 
-| Example | Design | Protocol Violations | Protocol-visible Failures | Result | Confirmed Root Cause | Time |
-|---------|--------|--------------------|-----------------------------|--------|----------------------|------|
-| `bvalibug` | `axi_lite_fifo_wrapper.sv` | 40 | 2 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on RDATA — asserting assignment overwritten | 36 s |
-| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | 1 | 1 | `AXI4L_RVALID_UNPROMPTED` | Always-block NBA override on RDATA — asserting assignment overwritten | 8 s |
-| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | 1 | 1 | `AXI4L_RDATA_STABILITY` | RDATA driver has no RREADY gate — payload advances freely during backpressure | 1.8 s |
-| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | 0 | 0 | **0 false positives** | No protocol violations on clean design | 36 s |
-| `axil_ram` | [Alex Forencich axil\_ram](https://github.com/alexforencich/verilog-axi) | 56 | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on BVALID — asserting assignment overwritten | 1.9 s |
-| `axil_dp_ram` | [Alex Forencich axil\_dp\_ram](https://github.com/alexforencich/verilog-axi) | 100 | 100 | `AXI4L_BVALID_PERSISTENCE` | Always-block NBA override on RDATA — asserting assignment overwritten | 17.7 s |
+| Example | Design | Protocol Violations | Result | Confirmed Root Cause | Time |
+|---------|--------|--------------------|---------|-----------------------|------|
+| `bvalibug` | `axi_lite_fifo_wrapper.sv` | 40 | `AXI4L_WRITE_RESPONSE_MISSING` | Intra-cycle NBA override: BVALID=1 overwritten by more-specific driver in same cycle `[PROOF]` | 18.6 s |
+| `arreay_bug` | `axi_lite_fifo_wrapper.sv` | 1 | `AXI4L_RVALID_UNPROMPTED` | FSM_OUTPUT_MASKED on ARREADY — broader condition overwrites state-specific value; RVALID fires before AR handshake | 10.5 s |
+| `axi_lite_slave_v1_0` | `axi_lite_slave_v1_0.v` | 1 | `AXI4L_RDATA_STABILITY` | `s_axi_rdata` driver has no RVALID/RREADY gate — payload advances freely during backpressure | 1.7 s |
+| `axil_adapter` | [Alex Forencich axil\_adapter](https://github.com/alexforencich/verilog-axi) | 0 | **PASS — 0 false positives** | No protocol violations on clean design | 30.2 s |
+| `axil_ram` | [Alex Forencich axil\_ram](https://github.com/alexforencich/verilog-axi) | 56 | `AXI4L_WRITE_RESPONSE_MISSING` | Always-block NBA override on RVALID — asserting assignment overwritten | 1.5 s |
+| `axil_dp_ram` | [Alex Forencich axil\_dp\_ram](https://github.com/alexforencich/verilog-axi) | 100 | `AXI4L_BVALID_PERSISTENCE` | Always-block NBA override on BVALID — asserting assignment overwritten | 24.2 s |
+| `exec_order_bug` | `exec_order_wr_fsm.sv` | 1 | `AXI4L_WRITE_RESPONSE_MISSING` | `w_state` reaches W_IDLE via `flush` without completing AXI handshake — missing WVALID/BVALID/BREADY guard | 1.3 s |
 
-> The last three test cases use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs — production-quality RTL. Each design was tested both clean (no bugs) and with bugs deliberately introduced by us. The clean runs confirmed **zero false positives** on protocol rules. The bug-introduced runs (`axil_ram`, `axil_dp_ram`) were correctly detected.
+> `axil_adapter`, `axil_ram`, and `axil_dp_ram` use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs. The clean run (`axil_adapter`) confirmed **zero false positives**.
 
 ### Sample `diagnosis.txt` — Bug detected (bvalibug)
 
@@ -161,6 +161,6 @@ No defects detected.
 
 ## License
 
-MIT License — see [LICENSE](LICENSE).
+Apache 2.0 — see [LICENSE](LICENSE).
 
 The core analysis engine is proprietary and distributed as compiled binaries only.

@@ -1,0 +1,16 @@
+# Normalize all text files to LF in the repo; checkout as-is on each platform
+* text=auto eol=lf
+
+# Force these to always be LF (scripts must be portable)
+*.py    text eol=lf
+*.toml  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.cfg   text eol=lf
+
+# Binaries — do not touch line endings
+*.pyd   binary
+*.so    binary
+*.whl   binary

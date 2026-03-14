@@ -1,0 +1,222 @@
+║     AXI4-LITE COMPLETE ANALYSIS PIPELINE - INTERACTIVE MODE      ║
+║        IR Backtrack → Protocol → Grouping → FSM Analysis         ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+Processing all 1 RTL file(s):
+  - exec_order_wr_fsm.sv
+
+======================================================================
+  RTL FILE 1/1
+======================================================================
+
+  1. Generic RTL causality analysis only
+     → Run interactive analysis using true_drivers.csv
+     → Skip AXI4-Lite protocol checking entirely
+
+  2. AXI4-Lite protocol RCA
+     → Run AXI4-Lite checker + signal grouping
+     → Interactive analysis available regardless of violation count
+
+  3. Both (generic first, then optional AXI4-Lite)
+     → Run interactive analysis first (true_drivers.csv)
+     → Then optionally run AXI4-Lite protocol checking
+
+Select mode (1/2/3): 
+CAUSAL ANALYSIS SUMMARY
+───────────────────────────────────────────────────────────────────────────────
+  Protocol violations detected                :   1   (AXI handshake rule failures)
+  Structural defects (semantic patterns)      :   0   (distinct destination / transform / bit-loss)
+  Replicated instances                        :   0   (RTL locations exhibiting the same defect pattern)
+  Violations caused by structural defects     :   0   (protocol failures traceable to RTL)
+  Downstream secondary effects                :   0   (cascading from primary cause)
+  Independent protocol issues                 :   1   (pure FSM / handshake, no RTL link)
+───────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+   FSM-AWARE INTERACTIVE ROOT CAUSE ANALYSIS TOOL
+   Deterministic Structural + FSM Root Cause Analysis
+================================================================================
+
+[GENERIC RTL MODE] Analyzing true drivers only (no protocol violations)
+
+
+Signals with RTL Drivers (Page 1/1):
+--------------------------------------------------------------------------------
+#     Signal                         Drivers    Status                        
+--------------------------------------------------------------------------------
+1     awready                        3          [OK] In waveform              
+2     beat_count                     3          [OK] In waveform              
+3     bvalid                         4          [OK] In waveform              
+4     w_state                        9          [OK] In waveform              
+5     wready                         3          [OK] In waveform              
+6     write_ok                       3          [OK] In waveform              
+--------------------------------------------------------------------------------
+Total: 6 signals
+
+Commands:
+  <numbers> - Analyze signal(s): 4  OR  1,3,5  OR  2-6
+  s <name>  - Search for signal by name
+  n         - Next page
+  p         - Previous page
+  a         - Analyze ALL signals
+  q         - Quit
+
+Enter command: 
+[1/2] Analyzing awready
+--------------------------------------------------------------------------------
+
+================================================================================
+   ANALYZING: awready
+================================================================================
+
+Driver Information:
+   Total drivers: 3
+   Active drivers (non-skip): 3
+
+Active Drivers:
+   [0] Block 1 (nonblocking)
+       Condition: !(rst_n)
+       RHS: 1'b0
+   [1] Block 1 (nonblocking)
+       Condition: (rst_n) && (w_state == W_IDLE)
+       RHS: 1'b1
+   [2] Block 1 (nonblocking)
+       Condition: ((rst_n) && (w_state == W_IDLE)) && ((awvalid) && (awready))
+       RHS: 1'b0
+
+Running analysis...
+
+[INFO] DESIGNER_INTENT [INFO] [PROVEN]
+
+No issues detected
+
+
+[2/2] Analyzing bvalid
+--------------------------------------------------------------------------------
+
+================================================================================
+   ANALYZING: bvalid
+================================================================================
+
+Driver Information:
+   Total drivers: 4
+   Active drivers (non-skip): 4
+
+Active Drivers:
+   [0] Block 1 (nonblocking)
+       Condition: !(rst_n)
+       RHS: 1'b0
+   [1] Block 1 (nonblocking)
+       Condition: (rst_n) && (w_state == W_IDLE)
+       RHS: 1'b0
+   [2] Block 1 (nonblocking)
+       Condition: (rst_n) && (w_state == W_RESP)
+       RHS: 1'b1
+   [3] Block 1 (nonblocking)
+       Condition: ((rst_n) && (w_state == W_RESP)) && (bready)
+       RHS: 1'b0
+
+Running analysis...
+
+[INFO] DESIGNER_INTENT [INFO] [PROVEN]
+
+No issues detected
+
+
+Analysis complete! (2 signal(s))
+
+
+====================================================================
+WaveEye Root Cause Report
+Design: all
+====================================================================
+
+VIOLATION
+  AXI4L_WRITE_RESPONSE_MISSING
+  Spec  : AXI4-Lite Spec §A3.2.1
+  Cycle : 486
+
+AFFECTED SIGNAL
+  RVALID
+
+RTL LOCATION
+  exec_order_wr_fsm.sv:68
+
+DRIVER PREDICATE
+  if ((rst_n) && (w_state == W_IDLE))
+
+  Predicate evaluation @ cycle 486
+      rst_n   = 1
+      w_state = W_IDLE
+      -> predicate TRUE
+
+PROBLEM
+  Predicate does not reference required AXI handshake signals.
+
+  Missing dependencies:
+      WVALID = 0
+      BVALID = 0
+      BREADY = 0
+
+  Result:
+      AW channel proceeds without coordinating with W or B channels, preventing a valid write response.
+
+--------------------------------------------------------------------
+CAUSAL BACKTRACK
+--------------------------------------------------------------------
+Why '(w_state == W_IDLE)' holds at cycle 486:
+
+  [0] (w_state == W_IDLE)
+        w_state = W_IDLE
+        RTL location : exec_order_wr_fsm.sv:116
+        RTL line     : 116
+
+        Condition:
+            if ((rst_n) && (flush))
+
+    [1] (flush)
+          flush = 1
+          Source : primary input
+          No RTL driver
+          ROOT
+
+--------------------------------------------------------------------
+ROOT CAUSE
+--------------------------------------------------------------------
+awready is controlled only by local FSM state
+and ignores required AXI channel coordination.
+
+AWREADY logic never checks:
+    WVALID
+    BVALID
+    BREADY
+
+This allows the channel to proceed without ensuring
+all required AXI handshake dependencies are met.
+
+--------------------------------------------------------------------
+SECONDARY ISSUE
+--------------------------------------------------------------------
+RESET_VIOLATION
+
+  w_state = x at cycle ?
+
+  Suggested fix:
+      Ensure reset dominates: if (!rst_n) w_state <= <safe_state>; as first condition
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+w_state reached W_IDLE via flush, but the required AXI handshake was not yet complete.
+AW channel continues accepting addresses but B response is never issued.
+
+Evidence   : predicate analysis + causal backtrack + FSM analysis
+====================================================================
+
+Total execution time: 0.64s
+
+
+[SUCCESS] Pipeline complete in 1.26s
+
+Analysis complete. Press Enter to exit...

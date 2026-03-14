@@ -1,0 +1,341 @@
+║     AXI4-LITE COMPLETE ANALYSIS PIPELINE - INTERACTIVE MODE      ║
+║        IR Backtrack → Protocol → Grouping → FSM Analysis         ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+Processing all 3 RTL file(s):
+  - axi_lite_fifo_wrapper.sv
+  - dut.v
+  - fifo.sv
+
+======================================================================
+  RTL FILE 1/3
+======================================================================
+[WARN] Extraction error: non-mutually-exclusive guards for always_block_id=1, if_chain_id=1, signal=wr_en
+guard_a=ARESETn
+guard_b=(ARESETn) && (!((write_state == IDLE) || (write_state == RESP)))
+[WARN] Continuing; enable WAVEEYE_STRICT_GUARD_EXCLUSION=1 to hard-fail.
+[WARN] Extraction error: non-mutually-exclusive guards for always_block_id=2, if_chain_id=5, signal=rd_en
+guard_a=ARESETn
+guard_b=(ARESETn) && (!((read_state == IDLE) || (read_state == RESP)))
+[WARN] Continuing; enable WAVEEYE_STRICT_GUARD_EXCLUSION=1 to hard-fail.
+
+======================================================================
+  RTL FILE 2/3
+======================================================================
+
+======================================================================
+  RTL FILE 3/3
+======================================================================
+
+  1. Generic RTL causality analysis only
+     → Run interactive analysis using true_drivers.csv
+     → Skip AXI4-Lite protocol checking entirely
+
+  2. AXI4-Lite protocol RCA
+     → Run AXI4-Lite checker + signal grouping
+     → Interactive analysis available regardless of violation count
+
+  3. Both (generic first, then optional AXI4-Lite)
+     → Run interactive analysis first (true_drivers.csv)
+     → Then optionally run AXI4-Lite protocol checking
+
+Select mode (1/2/3): 
+STRUCTURAL DEFECT SUMMARY
+───────────────────────────────────────────────────────────────────────────────
+  WIDTH_TRUNCATION
+  Destination      : RDATA
+  Source           : dout
+  First seen       : axi_lite_fifo_wrapper.sv:172
+  Instance count   : 1 replicated assignment
+
+  WIDTH_TRUNCATION
+  Destination      : RDATA
+  Source           : count
+  First seen       : axi_lite_fifo_wrapper.sv:181
+  Instance count   : 1 replicated assignment
+
+  WIDTH_TRUNCATION
+  Destination      : RDATA
+  Source           : fifo_level
+  First seen       : axi_lite_fifo_wrapper.sv:186
+  Instance count   : 1 replicated assignment
+
+  NON_BIJECTIVE_CAST (Systemic)
+  Destination      : -
+  First seen       : line 172
+  Also at          : line 181, line 186
+  Instance count   : 3 replicated assignments
+
+───────────────────────────────────────────────────────────────────────────────
+
+CAUSAL ANALYSIS SUMMARY
+───────────────────────────────────────────────────────────────────────────────
+  Protocol violations detected                :  40   (AXI handshake rule failures)
+  Structural defects (semantic patterns)      :   4   (distinct destination / transform / bit-loss)
+  Replicated instances                        :   6   (RTL locations exhibiting the same defect pattern)
+  Violations caused by structural defects     :   0   (protocol failures traceable to RTL)
+  Downstream secondary effects                :   0   (cascading from primary cause)
+  Independent protocol issues                 :  40   (pure FSM / handshake, no RTL link)
+───────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+   FSM-AWARE INTERACTIVE ROOT CAUSE ANALYSIS TOOL
+   Deterministic Structural + FSM Root Cause Analysis
+================================================================================
+
+[GENERIC RTL MODE] Analyzing true drivers only (no protocol violations)
+
+
+Signals with RTL Drivers (Page 1/2):
+--------------------------------------------------------------------------------
+#     Signal                         Drivers    Status                        
+--------------------------------------------------------------------------------
+1     ARREADY                        3          [OK] In waveform              
+2     AWREADY                        4          [OK] In waveform              
+3     BRESP                          4          [OK] In waveform              
+4     BVALID                         3          [OK] In waveform              
+5     RDATA                          7          [OK] In waveform              
+6     RRESP                          7          [OK] In waveform              
+7     RVALID                         3          [OK] In waveform              
+8     WREADY                         4          [OK] In waveform              
+9     count                          0          [OK] In waveform              
+10    count_internal                 2          [OK] In waveform              
+11    dout                           0          [OK] In waveform              
+12    empty                          2          [OK] In waveform              
+13    fifo_level                     0          [OK] In waveform              
+14    full                           1          [OK] In waveform              
+15    mem[wr_ptr]                    1          [--] Not in waveform          
+16    rd_en                          2          [OK] In waveform              
+17    rd_ptr                         1          [OK] In waveform              
+18    read_state                     4          [OK] In waveform              
+19    reset_sync                     2          [OK] In waveform              
+20    wr_en                          2          [OK] In waveform              
+--------------------------------------------------------------------------------
+Total: 23 signals
+
+Commands:
+  <numbers> - Analyze signal(s): 4  OR  1,3,5  OR  2-6
+  s <name>  - Search for signal by name
+  n         - Next page
+  p         - Previous page
+  a         - Analyze ALL signals
+  q         - Quit
+
+Enter command: 
+[1/2] Analyzing AWREADY
+--------------------------------------------------------------------------------
+
+================================================================================
+   ANALYZING: AWREADY
+================================================================================
+
+Driver Information:
+   Total drivers: 5
+   Active drivers (non-skip): 4
+
+Active Drivers:
+   [0] Block 1 (nonblocking)
+       Condition: !(ARESETn)
+       RHS: 0
+   [1] Block 1 (nonblocking)
+       Condition: ((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID))
+       RHS: 1
+   [2] Block 1 (nonblocking)
+       Condition: ((ARESETn) && (write_state == IDLE)) && (!((AWVALID) && (WVALID)))
+       RHS: 0
+   [3] Block 1 (nonblocking)
+       Condition: (ARESETn) && (write_state == RESP)
+       RHS: 0
+
+Running analysis...
+
+[INFO] DESIGNER_INTENT [INFO] [PROVEN]
+
+No issues detected
+
+
+[2/2] Analyzing BVALID
+--------------------------------------------------------------------------------
+
+================================================================================
+   ANALYZING: BVALID
+================================================================================
+
+Driver Information:
+   Total drivers: 4
+   Active drivers (non-skip): 3
+
+Active Drivers:
+   [0] Block 1 (nonblocking)
+       Condition: !(ARESETn)
+       RHS: 0
+   [1] Block 1 (nonblocking)
+       Condition: (ARESETn) && (write_state == RESP)
+       RHS: 1
+   [2] Block 1 (nonblocking)
+       Condition: ((ARESETn) && (write_state == RESP)) && (BREADY)
+       RHS: 0
+
+Running analysis...
+
+[INFO] DESIGNER_INTENT [INFO] [PROVEN]
+
+No issues detected
+
+
+Analysis complete! (2 signal(s))
+
+
+====================================================================
+WaveEye Root Cause Report
+Design: all
+====================================================================
+
+VIOLATION
+  AXI4L_WRITE_RESPONSE_MISSING
+  Spec  : AXI4-Lite Spec §A3.2.1
+  Cycle : 1312
+
+AFFECTED SIGNAL
+  AWREADY
+
+RTL LOCATION
+  axi_lite_fifo_wrapper.sv:105
+
+DRIVER PREDICATE
+  if (((ARESETn) && (write_state == IDLE)) && ((AWVALID) && (WVALID)))
+
+  Predicate evaluation @ cycle 1312
+      ARESETn     = 1
+      write_state = IDLE
+      AWVALID     = 1
+      WVALID      = 1
+      -> predicate TRUE
+
+PROBLEM
+  Predicate does not reference required AXI handshake signals.
+
+  Missing dependencies:
+      BVALID = 0
+      BREADY = 1
+
+  Result:
+      AW channel proceeds without coordinating with W or B channels, preventing a valid write response.
+
+--------------------------------------------------------------------
+CAUSAL BACKTRACK
+--------------------------------------------------------------------
+Why '(write_state == RESP)' holds at cycle 1312:
+
+  [0] (write_state == RESP)
+        write_state = IDLE
+        RTL location : axi_lite_fifo_wrapper.sv:133
+        RTL line     : 133
+
+        Condition:
+            if (((ARESETn) && (write_state == RESP)) && (BREADY))
+
+    [1] ((ARESETn) && (write_state == RESP))
+          ARESETn = 1
+          Source : primary input
+          No RTL driver
+          ROOT
+
+--------------------------------------------------------------------
+ROOT CAUSE
+--------------------------------------------------------------------
+AWREADY is controlled only by local FSM state
+and ignores required AXI channel coordination.
+
+AWREADY logic never checks:
+    BVALID
+    BREADY
+
+This allows the channel to proceed without ensuring
+all required AXI handshake dependencies are met.
+
+--------------------------------------------------------------------
+SCHEDULING CONFLICT  [PROOF]
+--------------------------------------------------------------------
+  Cycle 1312: BVALID has 2 simultaneously active drivers with conflicting values.
+
+--------------------------------------------------------------------
+DRIVER CANCELLATION  [PROOF]
+--------------------------------------------------------------------
+  Asserting  (D2): if ((ARESETn) && (write_state == RESP)) → BVALID = 1
+  Overwriting (D3): if (((ARESETn) && (write_state == RESP)) && (BREADY)) → BVALID = 0
+  → BVALID=1 is overwritten by the more-specific override before handshake completes.
+
+--------------------------------------------------------------------
+VIOLATION RCA 2/2
+--------------------------------------------------------------------
+
+VIOLATION
+  AXI4L_READ_RESPONSE_MISSING
+  Spec  : AXI4-Lite Spec §A3.3.1
+  Cycle(s)      : 16722
+  Occurrence(s) : 1
+
+AFFECTED SIGNAL
+  RVALID
+
+RTL LOCATION
+  axi_lite_fifo_wrapper.sv:155
+  RTL line : 155
+
+PROBLEM
+  Enable condition forms a causal cycle.
+
+EVIDENCE
+  ARVALID && ARREADY
+
+--------------------------------------------------------------------
+CAUSAL BACKTRACK
+--------------------------------------------------------------------
+Stored dependency graph:
+
+  RVALID
+  ├── read_state == IDLE
+  │   └── read_state
+  │       ├── read_state == IDLE
+  │       ├── read_state == RESP
+  │       │   └── read_state
+  │       ├── ARESETn
+  │       ├── ARVALID
+  │       ├── IDLE
+  │       ├── RESP
+  │       ├── RREADY
+  │       └── read_state
+  ├── read_state == RESP
+  ├── ARESETn
+  ├── IDLE
+  ├── RESP
+  ├── RREADY
+  └── read_state
+
+--------------------------------------------------------------------
+ROOT CAUSE
+--------------------------------------------------------------------
+RVALID never arrived after the read-address handshake.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+AR channel accepts reads but R response is never issued.
+
+--------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------
+write_state is in IDLE — FSM advanced to this state and no condition causes it to exit.
+AW channel continues accepting addresses but B response is never issued.
+
+Evidence   : predicate analysis + causal backtrack
+====================================================================
+
+Total execution time: 14.69s
+
+
+[SUCCESS] Pipeline complete in 18.55s
+
+Analysis complete. Press Enter to exit...
