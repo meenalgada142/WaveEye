@@ -3,6 +3,7 @@ build_release.py
 setup_cython.py
 pyproject.toml
 dist/
+standalone/
 MAIN_TOOL_ARCHITECTURE.md
 MAIN_TOOL_CALL_GRAPH.md
 
