@@ -1,0 +1,3814 @@
+{
+  "protocol": "axi_lite",
+  "waveform_max_cycle": 3260,
+  "transactions": [],
+  "findings": [
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1082,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1072 but dropped to 0 at cycle 1082 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1122,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1112 but dropped to 0 at cycle 1122 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1632,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1612 but dropped to 0 at cycle 1632 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1712,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1692 but dropped to 0 at cycle 1712 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1792,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1772 but dropped to 0 at cycle 1792 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1872,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1852 but dropped to 0 at cycle 1872 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1952,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 1932 but dropped to 0 at cycle 1952 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2572,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 2562 but dropped to 0 at cycle 2572 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2652,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 2642 but dropped to 0 at cycle 2652 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2732,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 2722 but dropped to 0 at cycle 2732 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2812,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 2802 but dropped to 0 at cycle 2812 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_5",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2892,
+      "verdict": "VIOLATED",
+      "signal": "BREADY",
+      "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "BREADY",
+        "trigger_condition": "RVALID was asserted at cycle 2882 but dropped to 0 at cycle 2892 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "BREADY",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BREADY",
+              "signal": "BREADY"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BREADY"
+          ],
+          "intermediate_signals": [
+            "BREADY"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 422,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 402 but dropped to 0 at cycle 422 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 922,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 912 but dropped to 0 at cycle 922 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 962,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 952 but dropped to 0 at cycle 962 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1002,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 992 but dropped to 0 at cycle 1002 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1042,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1032 but dropped to 0 at cycle 1042 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1592,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1562 but dropped to 0 at cycle 1592 (after 30 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1672,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1652 but dropped to 0 at cycle 1672 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1752,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1732 but dropped to 0 at cycle 1752 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1832,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1812 but dropped to 0 at cycle 1832 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1912,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 1892 but dropped to 0 at cycle 1912 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2532,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 2522 but dropped to 0 at cycle 2532 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2612,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 2602 but dropped to 0 at cycle 2612 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2692,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 2682 but dropped to 0 at cycle 2692 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2772,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 2762 but dropped to 0 at cycle 2772 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_6",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2852,
+      "verdict": "VIOLATED",
+      "signal": "RDATA",
+      "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+      "evidence": {
+        "expected_signal": "RDATA",
+        "trigger_condition": "BVALID was asserted at cycle 2842 but dropped to 0 at cycle 2852 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+        "dependency_graph": {
+          "root": "RDATA",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RDATA",
+              "signal": "RDATA"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RDATA"
+          ],
+          "intermediate_signals": [
+            "RDATA"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 462,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 442, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 462. The first transaction was outstanding for 20 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1112,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1072, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1112. The first transaction was outstanding for 40 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1232,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1112, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1232. The first transaction was outstanding for 120 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1692,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1612, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1692. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1772,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1692, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1772. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1852,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1772, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1852. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1932,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1852, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1932. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2092,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 1932, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2092. The first transaction was outstanding for 160 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2642,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 2562, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2642. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2722,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 2642, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2722. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2802,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 2722, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2802. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2882,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 2802, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2882. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_12",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 3142,
+      "verdict": "VIOLATED",
+      "signal": "RVALID",
+      "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+      "evidence": {
+        "expected_signal": "RVALID",
+        "trigger_condition": "First AR handshake occurred at cycle 2882, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 3142. The first transaction was outstanding for 260 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "RVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "RVALID",
+              "signal": "RVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "RVALID"
+          ],
+          "intermediate_signals": [
+            "RVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 302,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 272. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 302. The first transaction was outstanding for 30 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0,
+          "waveform_values": {
+            "BVALID": null
+          },
+          "eval_cycle": 302
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 602,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 402. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 602. The first transaction was outstanding for 200 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 952,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 952. The first transaction was outstanding for 40 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 992,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 992. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1032,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1032. The first transaction was outstanding for 120 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1202,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1202. The first transaction was outstanding for 290 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1652,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1652. The first transaction was outstanding for 90 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1732,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1732. The first transaction was outstanding for 170 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1812,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1812. The first transaction was outstanding for 250 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 1892,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1892. The first transaction was outstanding for 330 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2052,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2052. The first transaction was outstanding for 490 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2602,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2602. The first transaction was outstanding for 80 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2682,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2682. The first transaction was outstanding for 160 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2762,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2762. The first transaction was outstanding for 240 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2842,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2842. The first transaction was outstanding for 320 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    },
+    {
+      "rule_id": "RULE_13",
+      "classification": "TEMPORAL_VIOLATION",
+      "analysis_cycle": 2972,
+      "verdict": "VIOLATED",
+      "signal": "BVALID",
+      "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+      "evidence": {
+        "expected_signal": "BVALID",
+        "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2972. The first transaction was outstanding for 450 cycles when this violation occurred.",
+        "dependency_graph": {
+          "root": "BVALID",
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "signal",
+              "label": "BVALID",
+              "signal": "BVALID"
+            }
+          ],
+          "edges": [],
+          "leaf_signals": [
+            "BVALID"
+          ],
+          "intermediate_signals": [
+            "BVALID"
+          ],
+          "fsm_references": [],
+          "adjacency": {},
+          "depth_reached": 0
+        }
+      }
+    }
+  ],
+  "datapath_violations": [
+    {
+      "type": "DATAPATH_VIOLATION",
+      "class": "WRITE_ALIASING_BUG",
+      "memory": "mem",
+      "always_block_id": null,
+      "expected": "varies with iterator",
+      "actual": "0 (constant \u2014 does not depend on loop iterator)",
+      "impact": "Slice base in 'mem[j]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+      "source": "axil_ram.v:108"
+    },
+    {
+      "type": "DATAPATH_VIOLATION",
+      "class": "WRITE_ALIASING_BUG",
+      "memory": "mem",
+      "always_block_id": 2,
+      "expected": "varies with iterator",
+      "actual": "0 (constant \u2014 does not depend on loop iterator)",
+      "impact": "Slice base in 'mem[s_axil_awaddr_valid][0 +: WORD_SIZE]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+      "source": "axil_ram.v:138"
+    },
+    {
+      "class": "LANE_BIJECTION_VIOLATION",
+      "memory": "mem",
+      "always_block_id": null,
+      "expected": "mem[addr][i*0 +: 0]",
+      "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+      "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:108.",
+      "source": "axil_ram.v:108"
+    },
+    {
+      "class": "LANE_BIJECTION_VIOLATION",
+      "memory": "mem",
+      "always_block_id": 2,
+      "expected": "mem[addr][i*0 +: 0]",
+      "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+      "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:138.",
+      "source": "axil_ram.v:138"
+    }
+  ],
+  "transport_violations": [],
+  "binding_result": {
+    "pass": "TRANSACTION_TO_DATAPATH_BINDING",
+    "causal_bindings": [],
+    "latent_violations": [],
+    "upgraded_violations": [],
+    "summary": {
+      "causal": 0,
+      "latent": 0,
+      "total_violations": 0
+    }
+  },
+  "final_rca": {
+    "root_cause_type": "PROTOCOL",
+    "classification": "TEMPORAL_VIOLATION",
+    "confidence": "HIGH",
+    "explanation": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+    "primary_evidence": [
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 302,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 272. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 302. The first transaction was outstanding for 30 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0,
+            "waveform_values": {
+              "BVALID": null
+            },
+            "eval_cycle": 302
+          }
+        }
+      }
+    ],
+    "secondary_effects": [
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1082,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1072 but dropped to 0 at cycle 1082 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1122,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1112 but dropped to 0 at cycle 1122 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1632,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1612 but dropped to 0 at cycle 1632 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1712,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1692 but dropped to 0 at cycle 1712 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1792,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1772 but dropped to 0 at cycle 1792 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1872,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1852 but dropped to 0 at cycle 1872 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1952,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 1932 but dropped to 0 at cycle 1952 (after 20 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2572,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 2562 but dropped to 0 at cycle 2572 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2652,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 2642 but dropped to 0 at cycle 2652 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2732,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 2722 but dropped to 0 at cycle 2732 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2812,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 2802 but dropped to 0 at cycle 2812 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_5",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2892,
+        "verdict": "VIOLATED",
+        "signal": "BREADY",
+        "detail": "RVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once RVALID is asserted, it MUST remain asserted until RREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "BREADY",
+          "trigger_condition": "RVALID was asserted at cycle 2882 but dropped to 0 at cycle 2892 (after 10 cycles) without RREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "BREADY",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BREADY",
+                "signal": "BREADY"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BREADY"
+            ],
+            "intermediate_signals": [
+              "BREADY"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 422,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 402 but dropped to 0 at cycle 422 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 922,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 912 but dropped to 0 at cycle 922 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 962,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 952 but dropped to 0 at cycle 962 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1002,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 992 but dropped to 0 at cycle 1002 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1042,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1032 but dropped to 0 at cycle 1042 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1592,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1562 but dropped to 0 at cycle 1592 (after 30 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1672,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1652 but dropped to 0 at cycle 1672 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1752,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1732 but dropped to 0 at cycle 1752 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1832,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1812 but dropped to 0 at cycle 1832 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1912,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 1892 but dropped to 0 at cycle 1912 (after 20 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2532,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 2522 but dropped to 0 at cycle 2532 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2612,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 2602 but dropped to 0 at cycle 2612 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2692,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 2682 but dropped to 0 at cycle 2692 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2772,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 2762 but dropped to 0 at cycle 2772 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_6",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2852,
+        "verdict": "VIOLATED",
+        "signal": "RDATA",
+        "detail": "BVALID was deasserted before a handshake occurred. Per AXI4-Lite specification, once BVALID is asserted, it MUST remain asserted until BREADY is also high (completing the handshake).",
+        "evidence": {
+          "expected_signal": "RDATA",
+          "trigger_condition": "BVALID was asserted at cycle 2842 but dropped to 0 at cycle 2852 (after 10 cycles) without BREADY ever being high. The transaction was prematurely withdrawn.",
+          "dependency_graph": {
+            "root": "RDATA",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RDATA",
+                "signal": "RDATA"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RDATA"
+            ],
+            "intermediate_signals": [
+              "RDATA"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 462,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 442, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 462. The first transaction was outstanding for 20 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1112,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1072, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1112. The first transaction was outstanding for 40 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1232,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1112, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1232. The first transaction was outstanding for 120 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1692,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1612, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1692. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1772,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1692, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1772. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1852,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1772, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1852. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1932,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1852, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 1932. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2092,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 1932, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2092. The first transaction was outstanding for 160 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2642,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 2562, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2642. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2722,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 2642, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2722. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2802,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 2722, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2802. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2882,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 2802, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 2882. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_12",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 3142,
+        "verdict": "VIOLATED",
+        "signal": "RVALID",
+        "detail": "A second read address handshake occurred while a previous read transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding read transaction at a time.",
+        "evidence": {
+          "expected_signal": "RVALID",
+          "trigger_condition": "First AR handshake occurred at cycle 2882, initiating a read transaction. Before the read data response completed (RVALID && RREADY), another AR handshake occurred at cycle 3142. The first transaction was outstanding for 260 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "RVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "RVALID",
+                "signal": "RVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "RVALID"
+            ],
+            "intermediate_signals": [
+              "RVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 602,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 402. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 602. The first transaction was outstanding for 200 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 952,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 952. The first transaction was outstanding for 40 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 992,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 992. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1032,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1032. The first transaction was outstanding for 120 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1202,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 912. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1202. The first transaction was outstanding for 290 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1652,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1652. The first transaction was outstanding for 90 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1732,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1732. The first transaction was outstanding for 170 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1812,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1812. The first transaction was outstanding for 250 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 1892,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 1892. The first transaction was outstanding for 330 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2052,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 1562. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2052. The first transaction was outstanding for 490 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2602,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2602. The first transaction was outstanding for 80 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2682,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2682. The first transaction was outstanding for 160 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2762,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2762. The first transaction was outstanding for 240 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2842,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2842. The first transaction was outstanding for 320 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "rule_id": "RULE_13",
+        "classification": "TEMPORAL_VIOLATION",
+        "analysis_cycle": 2972,
+        "verdict": "VIOLATED",
+        "signal": "BVALID",
+        "detail": "A second write address handshake occurred while a previous write transaction was still outstanding. AXI4-Lite specification explicitly permits ONLY ONE outstanding write transaction at a time.",
+        "evidence": {
+          "expected_signal": "BVALID",
+          "trigger_condition": "First write transaction started at cycle 2522. Before the write response completed (BVALID && BREADY), another AW handshake occurred at cycle 2972. The first transaction was outstanding for 450 cycles when this violation occurred.",
+          "dependency_graph": {
+            "root": "BVALID",
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "signal",
+                "label": "BVALID",
+                "signal": "BVALID"
+              }
+            ],
+            "edges": [],
+            "leaf_signals": [
+              "BVALID"
+            ],
+            "intermediate_signals": [
+              "BVALID"
+            ],
+            "fsm_references": [],
+            "adjacency": {},
+            "depth_reached": 0
+          }
+        }
+      },
+      {
+        "type": "DATAPATH_VIOLATION",
+        "class": "WRITE_ALIASING_BUG",
+        "memory": "mem",
+        "always_block_id": null,
+        "expected": "varies with iterator",
+        "actual": "0 (constant \u2014 does not depend on loop iterator)",
+        "impact": "Slice base in 'mem[j]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+        "source": "axil_ram.v:108"
+      },
+      {
+        "type": "DATAPATH_VIOLATION",
+        "class": "WRITE_ALIASING_BUG",
+        "memory": "mem",
+        "always_block_id": 2,
+        "expected": "varies with iterator",
+        "actual": "0 (constant \u2014 does not depend on loop iterator)",
+        "impact": "Slice base in 'mem[s_axil_awaddr_valid][0 +: WORD_SIZE]' does not depend on loop iterator 'i'. Every iteration overwrites the same byte lane, collapsing the write.",
+        "source": "axil_ram.v:138"
+      },
+      {
+        "class": "LANE_BIJECTION_VIOLATION",
+        "memory": "mem",
+        "always_block_id": null,
+        "expected": "mem[addr][i*0 +: 0]",
+        "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+        "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:108.",
+        "source": "axil_ram.v:108"
+      },
+      {
+        "class": "LANE_BIJECTION_VIOLATION",
+        "memory": "mem",
+        "always_block_id": 2,
+        "expected": "mem[addr][i*0 +: 0]",
+        "actual": "mem[addr][0 +: 0] (constant \u2014 independent of i)",
+        "impact": "Detected byte-lane aliasing in memory write to 'mem'.\nAll i-loop iterations write to the same destination slice [0 +: ?].\nExpected each iteration to target a unique byte lane.\nLater writes overwrite earlier ones \u2014 silent data corruption.\nRTL location: axil_ram.v:138.",
+        "source": "axil_ram.v:138"
+      }
+    ],
+    "rule_id": "RULE_13",
+    "analysis_cycle": 302,
+    "causal_chain": "    [RULE_13 @ analysis_cycle 302] TRUE-PATH RCA - PRIMARY: BVALID\n      SYSTEM-2+3: TRUE-path backtracking from BVALID:\n      BACKTRACK MAP (COND vs RHS, by depth):\n        L0 NODE BVALID [root]\n        L0 CYCLIC: BVALID in own driver conditions [ENABLE_CYCLE]\n      LEAF SIGNALS: BVALID\n      ROOT LEAF: BVALID [registered_latch_unknown]"
+  }
+}

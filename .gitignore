@@ -33,6 +33,11 @@ causal_binding.json
 outputs/
 build_log.txt
 
+# Allow test_results/ to include proof artifacts as validated evidence
+!test_results/**/*.proof.json
+!test_results/**/*.appendix.txt
+!test_results/**/causal_binding.json
+
 # ── Archive / legacy ──────────────────────────────────────────────────────
 _archive_main_tool/
 

@@ -1,0 +1,11 @@
+{
+  "pass": "TRANSACTION_TO_DATAPATH_BINDING",
+  "causal_bindings": [],
+  "latent_violations": [],
+  "upgraded_violations": [],
+  "summary": {
+    "causal": 0,
+    "latent": 0,
+    "total_violations": 0
+  }
+}
