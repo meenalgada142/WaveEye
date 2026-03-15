@@ -235,6 +235,450 @@ def _rule_level_rca_summary(
     return f"{sig} violates {rule_id}."
 
 
+# AXI signal canonical role descriptions (suffix-matched, case-insensitive)
+_AXI_SIGNAL_ROLES: Dict[str, str] = {
+    "arvalid":  "ARVALID  — master: read address valid",
+    "arready":  "ARREADY  — slave:  read address accepted",
+    "araddr":   "ARADDR   — master: read address",
+    "awvalid":  "AWVALID  — master: write address valid",
+    "awready":  "AWREADY  — slave:  write address accepted",
+    "awaddr":   "AWADDR   — master: write address",
+    "wvalid":   "WVALID   — master: write data valid",
+    "wready":   "WREADY   — slave:  write data accepted",
+    "wdata":    "WDATA    — master: write data payload",
+    "wstrb":    "WSTRB    — master: write byte strobes",
+    "bvalid":   "BVALID   — slave:  write response valid",
+    "bready":   "BREADY   — master: write response accepted",
+    "bresp":    "BRESP    — slave:  write response code",
+    "rvalid":   "RVALID   — slave:  read data valid",
+    "rready":   "RREADY   — master: read data accepted",
+    "rdata":    "RDATA    — slave:  read data payload",
+    "rresp":    "RRESP    — slave:  read response code",
+}
+
+_SKIP_SIGNALS = frozenset({"rst", "reset", "rst_n", "aresetn", "areset_n", "clk", "clock",
+                            "pipeline_output", "addr_width", "data_width", "strb_width",
+                            "word_size", "word_width", "valid_addr_width"})
+
+
+def _axi_role(sig: str) -> str:
+    """Return 'SIG [role]' if sig is a known AXI signal, else just sig."""
+    s = sig.lower()
+    for suffix, role in _AXI_SIGNAL_ROLES.items():
+        if s == suffix or s.endswith("_" + suffix):
+            return f"{sig}  [{role}]"
+    return sig
+
+
+def _is_noise(sig: str) -> bool:
+    s = sig.lower()
+    return s in _SKIP_SIGNALS or s.startswith("pipeline_") or s.isdigit()
+
+
+def _driver_role(rhs: str, cond: str) -> str:
+    """Classify what a driver does to its signal."""
+    rhs = rhs.strip()
+    if rhs in ("1", "1'b1", "1'h1"):
+        return "ASSERTS"
+    if rhs in ("0", "1'b0", "1'h0"):
+        return "RESETS"
+    cond_low = cond.strip().lower()
+    if not cond or cond_low in ("", "1", "true", "1'b1"):
+        # Unconditional → pure pass-through or hold expression
+        if re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', rhs):
+            return "PASSES"
+    return "HOLDS"
+
+
+_VIOLATION_MODE: Dict[str, str] = {
+    # Mode A — NBA scheduling conflict: ASSERT fires but gets overwritten in same cycle
+    # Detected by rca_8 SCHEDULING_CANCELLATION / DESIGN_STRUCTURAL_BLOCKAGE mechanism
+    # Note: RULE_12/13 may land here when the conflict is proven by rca_8
+    # Mode B — Valid persistence: VALID asserted then dropped before handshake
+    "AXI4L_BVALID_PERSISTENCE":      "B",
+    "AXI4L_RVALID_PERSISTENCE":      "B",
+    "AXI4L_AWVALID_PERSISTENCE":     "B",
+    "AXI4L_ARVALID_PERSISTENCE":     "B",
+    "AXI4L_WVALID_PERSISTENCE":      "B",
+    # Mode C — Payload stability: data changed while VALID=1, before READY
+    "AXI4L_RDATA_STABILITY":         "C",
+    "AXI4L_WDATA_STABILITY":         "C",
+    "AXI4L_ADDR_STABILITY":          "C",
+    "AXI4L_ARPROT_STABILITY":        "C",
+    "AXI4L_AWPROT_STABILITY":        "C",
+    "AXI4L_BRESP_STABILITY":         "C",
+    # Mode D — Response missing: handshake happened but VALID never issued
+    "AXI4L_READ_RESPONSE_MISSING":   "D",
+    "AXI4L_WRITE_RESPONSE_MISSING":  "D",
+    "AXI4L_RVALID_UNPROMPTED":       "D",
+    "AXI4L_BVALID_UNPROMPTED":       "D",
+    "AXI4L_OVERLAPPING_TRANSACTION": "D",
+}
+
+_MODE_LABELS: Dict[str, str] = {
+    "A": "MODE A  Scheduling Conflict  -- asserting driver overwritten in same cycle by another driver",
+    "B": "MODE B  Valid Persistence    -- VALID asserted then dropped before handshake completed",
+    "C": "MODE C  Payload Stability    -- data/address changed while VALID=1 before READY",
+    "D": "MODE D  Response Missing     -- required response (BVALID/RVALID) never asserted after handshake",
+}
+
+_MODE_FOCUS: Dict[str, str] = {
+    "A": "Root cause: which driver overwrites the ASSERT? Look for a RESETS driver that fires in the same cycle.",
+    "B": "Root cause: what clears the signal? The HOLDS driver condition must gate on READY — check if it does.",
+    "C": "Root cause: missing VALID/READY gate on payload driver — data updates freely during backpressure.",
+    "D": "Root cause: why does the ASSERTS condition never fire? Which term in the condition stays FALSE?",
+}
+
+
+def _render_backtrack_narrative(
+    graph: Dict[str, Any],
+    rule_id: str = "?",
+    analysis_cycle: Any = "?",
+    indent: str = "  ",
+    violation_class: str = "",
+) -> str:
+    """
+    Human-readable causal backtrack: RTL drive chain + key driver conditions.
+
+    Shows:
+      1. Mode label (A/B/C/D) and what to look for
+      2. Which signal is under analysis and its RTL drive chain
+      3. The key logic signal's driver conditions with role labels
+         (ASSERTS / HOLDS / RESETS / PASSES) + active/inactive annotations
+    """
+    root = (graph.get("root") or "?").strip()
+    nodes: List[Dict[str, Any]] = graph.get("nodes") or []
+    raw_adjacency: Dict[str, Any] = graph.get("adjacency") or {}
+    wf_vals: Dict[str, Any] = graph.get("waveform_values") or {}
+
+    adjacency: Dict[str, List[Dict[str, Any]]] = {
+        k.lower(): v for k, v in raw_adjacency.items()
+    }
+
+    _idx_re = re.compile(r'\[(\d+)\]$')
+    sig_to_drivers: Dict[str, List[Dict[str, Any]]] = {}
+    orig_case: Dict[str, str] = {}
+
+    for n in nodes:
+        ntype = n.get("type") or ""
+        name = (n.get("signal") or n.get("label") or "").strip()
+        base_name = _idx_re.sub("", name).strip()
+        if base_name:
+            orig_case[base_name.lower()] = base_name
+        if ntype == "driver":
+            sig = (n.get("signal") or "").lower().strip()
+            if sig:
+                sig_to_drivers.setdefault(sig, []).append(n)
+
+    def _drv_sort_key(n: Dict[str, Any]) -> int:
+        m = _idx_re.search(n.get("label", ""))
+        return int(m.group(1)) if m else 999
+
+    for sig in sig_to_drivers:
+        sig_to_drivers[sig].sort(key=_drv_sort_key)
+
+    orig_case.setdefault(root.lower(), root)
+
+    _KW_LOW = frozenset({
+        "and", "or", "not", "if", "else", "true", "false",
+        "posedge", "negedge", "reg", "wire", "input", "output",
+        "inout", "assign", "begin", "end",
+    })
+    _IDENT = re.compile(r'\b([A-Za-z_][A-Za-z0-9_]*)\b')
+
+    def _child_sigs(sig_lower: str) -> List[str]:
+        children: set = set()
+        for dep in adjacency.get(sig_lower, []):
+            if dep.get("kind") == "signal":
+                dep_name = (dep.get("name") or "").lower()
+                if dep_name and dep_name in sig_to_drivers and dep_name != sig_lower:
+                    children.add(dep_name)
+        for drv in sig_to_drivers.get(sig_lower, []):
+            for text in (drv.get("condition") or "", drv.get("rhs") or ""):
+                for m in _IDENT.finditer(text):
+                    n2 = m.group(1).lower()
+                    if n2 in sig_to_drivers and n2 != sig_lower and n2 not in _KW_LOW:
+                        children.add(n2)
+        return sorted(children)
+
+    # BFS order of signals reachable from root
+    bfs_order: List[str] = []
+    bfs_visited: set = set()
+    bfs_queue: List[str] = [root.lower()]
+    while bfs_queue:
+        sig = bfs_queue.pop(0)
+        if sig in bfs_visited:
+            continue
+        bfs_visited.add(sig)
+        if sig in sig_to_drivers:
+            bfs_order.append(sig)
+        for child in _child_sigs(sig):
+            if child not in bfs_visited:
+                bfs_queue.append(child)
+
+    # Find the "key logic" signal: FIRST signal in BFS order that has an
+    # ASSERT driver (→1). This stays on the register pipeline path and avoids
+    # diving into condition-dependency branches (e.g. awready_next).
+    key_sig_lower = root.lower()
+    for sig in bfs_order:
+        for drv in sig_to_drivers.get(sig, []):
+            rhs  = (drv.get("rhs") or "").strip()
+            cond = (drv.get("condition") or "").strip()
+            if _driver_role(rhs, cond) == "ASSERTS":
+                key_sig_lower = sig
+                break
+        else:
+            continue
+        break
+
+    # Build the drive chain by following only unconditional pass-through
+    # assignments from root — this traces the register pipeline, not the
+    # condition dependency graph.
+    _SIMPLE_SIG_RE = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*$')
+
+    def _src_short(drv: Dict[str, Any]) -> str:
+        src = (drv.get("file") or drv.get("source_location") or "").strip()
+        m = re.search(r"([^/\\]+:\d+)(?::\d+)?$", src)
+        return m.group(1) if m else src
+
+    def _first_src(sig_lower: str) -> str:
+        drvs = sig_to_drivers.get(sig_lower, [])
+        return _src_short(drvs[0]) if drvs else ""
+
+    # Trace PASSES chain: follow unconditional drivers whose RHS is a bare signal name
+    chain_sigs: List[str] = [root.lower()]
+    chain_seen: set = {root.lower()}
+    cur = root.lower()
+    for _ in range(8):
+        cur_drvs = sig_to_drivers.get(cur, [])
+        pass_target: Optional[str] = None
+        for drv in cur_drvs:
+            rhs  = (drv.get("rhs") or "").strip()
+            cond = (drv.get("condition") or "").strip()
+            if _driver_role(rhs, cond) == "PASSES" and _SIMPLE_SIG_RE.match(rhs):
+                pass_target = rhs.lower()
+                break
+        if not pass_target or pass_target in chain_seen or pass_target not in sig_to_drivers:
+            break
+        chain_sigs.append(pass_target)
+        chain_seen.add(pass_target)
+        cur = pass_target
+        if cur == key_sig_lower:
+            break
+
+    # If the PASSES chain didn't reach key_sig, append it if it's in bfs_order
+    if key_sig_lower not in chain_seen and key_sig_lower in sig_to_drivers:
+        chain_sigs.append(key_sig_lower)
+    # Update key_sig to the last element of the chain
+    key_sig_lower = chain_sigs[-1]
+
+    def _wf_val(name: str) -> Optional[str]:
+        v = wf_vals.get(name)
+        if v is None:
+            v = wf_vals.get(name.lower())
+        return str(v) if v is not None else None
+
+    # ── Build output ──────────────────────────────────────────────────────────
+    i = indent
+    out: List[str] = []
+
+    # Mode header
+    mode = _VIOLATION_MODE.get(violation_class, "")
+    if mode:
+        out.append(f"{i}{_MODE_LABELS[mode]}")
+        out.append(f"{i}{_MODE_FOCUS[mode]}")
+        out.append("")
+
+    # Signal header
+    root_orig = orig_case.get(root.lower(), root)
+    root_wf   = _wf_val(root_orig) or _wf_val(root)
+    root_wf_str = f" = {root_wf}" if root_wf is not None else ""
+    out.append(f"{i}Primary signal : {root_orig}{root_wf_str}  "
+               f"[{rule_id}, cycle {analysis_cycle}]")
+    out.append(f"{i}RTL file       : {_first_src(root.lower()) or '(see RTL location above)'}")
+    out.append("")
+
+    # Drive chain (collapsed): root ← reg ← next-logic
+    if len(chain_sigs) > 1:
+        chain_names = [orig_case.get(s, s) for s in chain_sigs]
+        chain_srcs  = [_first_src(s) for s in chain_sigs]
+        out.append(f"{i}Drive chain (output <-- register <-- combinational logic):")
+        out.append(f"{i}  " + "  <--  ".join(chain_names))
+        srcs_str = "  |  ".join(f"{n} @ {s}" for n, s in zip(chain_names, chain_srcs) if s)
+        if srcs_str:
+            out.append(f"{i}  {srcs_str}")
+        out.append("")
+
+    # Key logic signal: show its driver conditions with role labels
+    key_sig_orig = orig_case.get(key_sig_lower, key_sig_lower)
+    key_src      = _first_src(key_sig_lower)
+    out.append(f"{i}Key controlling logic : {key_sig_orig}"
+               + (f"  ({key_src})" if key_src else ""))
+
+    key_drivers = sig_to_drivers.get(key_sig_lower, [])
+    if not key_drivers:
+        out.append(f"{i}  (no driver conditions found)")
+    else:
+        for d_idx, drv in enumerate(key_drivers):
+            cond  = (drv.get("condition") or "").strip()
+            rhs   = (drv.get("rhs") or "").strip()
+            src   = _src_short(drv)
+            role  = _driver_role(rhs, cond)
+            active = drv.get("condition_active")
+
+            # Active/inactive tag
+            if active is True:
+                act_tag = "  [ACTIVE at this cycle]"
+            elif active is False:
+                act_tag = "  [inactive at this cycle]"
+            else:
+                act_tag = ""
+
+            out.append(f"{i}  D{d_idx} [{role}]{act_tag}")
+            if cond:
+                # Wrap long conditions at ~72 chars
+                cond_prefix = f"{i}    condition : "
+                if len(cond_prefix) + len(cond) <= 80:
+                    out.append(f"{cond_prefix}{cond}")
+                else:
+                    # Break on && / || boundaries for readability
+                    parts = re.split(r'(\s*&&\s*|\s*\|\|\s*)', cond)
+                    line_buf = cond_prefix
+                    first = True
+                    for part in parts:
+                        if not first and len(line_buf) + len(part) > 80:
+                            out.append(line_buf)
+                            line_buf = f"{i}                 " + part.lstrip()
+                        else:
+                            line_buf += part
+                            first = False
+                    if line_buf.strip():
+                        out.append(line_buf)
+            else:
+                out.append(f"{i}    condition : (always / unconditional)")
+            out.append(f"{i}    assigns   : {rhs or '?'}  @ {src}")
+
+            # ── Active driver: show each TRUE condition term with waveform values ──
+            if active is True:
+                true_terms  = drv.get("true_terms")  or []
+                false_terms = drv.get("false_terms") or []
+                term_vals   = drv.get("term_values") or {}
+                if true_terms or false_terms:
+                    out.append(f"{i}    evaluated conditions:")
+                    for tt in true_terms:
+                        sig_refs = [m for m in _IDENT.findall(tt) if m.lower() not in _KW_LOW]
+                        sv_parts = []
+                        seen_tt: set = set()
+                        for sr in sig_refs:
+                            if sr.lower() in seen_tt:
+                                continue
+                            seen_tt.add(sr.lower())
+                            v = _wf_val(sr)
+                            if v is not None:
+                                sv_parts.append(f"{sr}={v}")
+                        vals_str = "  [" + ", ".join(sv_parts) + "]" if sv_parts else ""
+                        out.append(f"{i}      TRUE  : {tt}{vals_str}")
+                    for ft in false_terms:
+                        out.append(f"{i}      FALSE : {ft}")
+                else:
+                    # No per-term breakdown — show all condition signals with values
+                    if cond:
+                        sig_refs = [m for m in _IDENT.findall(cond) if m.lower() not in _KW_LOW]
+                        wf_parts: List[str] = []
+                        seen_wf: set = set()
+                        for sr in sig_refs:
+                            if sr.lower() in seen_wf:
+                                continue
+                            seen_wf.add(sr.lower())
+                            v = _wf_val(sr)
+                            if v is not None:
+                                wf_parts.append(f"{sr}={v}")
+                        if wf_parts:
+                            out.append(f"{i}    waveform  : {', '.join(wf_parts)}")
+
+            # ── Inactive driver: show what is blocking it ──────────────────────────
+            elif active is False:
+                first_false = drv.get("first_false_term")
+                false_terms = drv.get("false_terms") or []
+                true_terms  = drv.get("true_terms")  or []
+                if true_terms or false_terms:
+                    out.append(f"{i}    evaluated conditions:")
+                    for tt in true_terms:
+                        sig_refs = [m for m in _IDENT.findall(tt) if m.lower() not in _KW_LOW]
+                        sv_parts = []
+                        seen_tt2: set = set()
+                        for sr in sig_refs:
+                            if sr.lower() in seen_tt2:
+                                continue
+                            seen_tt2.add(sr.lower())
+                            v = _wf_val(sr)
+                            if v is not None:
+                                sv_parts.append(f"{sr}={v}")
+                        vals_str = "  [" + ", ".join(sv_parts) + "]" if sv_parts else ""
+                        out.append(f"{i}      TRUE  : {tt}{vals_str}")
+                    for ft in false_terms:
+                        sig_refs = [m for m in _IDENT.findall(ft) if m.lower() not in _KW_LOW]
+                        sv_parts = []
+                        seen_ft: set = set()
+                        for sr in sig_refs:
+                            if sr.lower() in seen_ft:
+                                continue
+                            seen_ft.add(sr.lower())
+                            v = _wf_val(sr)
+                            if v is not None:
+                                sv_parts.append(f"{sr}={v}")
+                        vals_str = "  [" + ", ".join(sv_parts) + "]" if sv_parts else ""
+                        out.append(f"{i}      FALSE : {ft}{vals_str}  <-- BLOCKING")
+                elif first_false:
+                    sig_refs = [m for m in _IDENT.findall(first_false) if m.lower() not in _KW_LOW]
+                    sv_parts = []
+                    seen_ff: set = set()
+                    for sr in sig_refs:
+                        if sr.lower() in seen_ff:
+                            continue
+                        seen_ff.add(sr.lower())
+                        v = _wf_val(sr)
+                        if v is not None:
+                            sv_parts.append(f"{sr}={v}")
+                    vals_str = "  [" + ", ".join(sv_parts) + "]" if sv_parts else ""
+                    out.append(f"{i}    blocked by: {first_false}{vals_str}")
+                else:
+                    # No per-term data — show all condition signals with values
+                    if cond:
+                        sig_refs = [m for m in _IDENT.findall(cond) if m.lower() not in _KW_LOW]
+                        wf_parts2: List[str] = []
+                        seen_wf2: set = set()
+                        for sr in sig_refs:
+                            if sr.lower() in seen_wf2:
+                                continue
+                            seen_wf2.add(sr.lower())
+                            v = _wf_val(sr)
+                            if v is not None:
+                                wf_parts2.append(f"{sr}={v}")
+                        if wf_parts2:
+                            out.append(f"{i}    waveform  : {', '.join(wf_parts2)}")
+
+            # ── No waveform annotation — show signal values from graph ─────────────
+            else:
+                if cond:
+                    sig_refs = [m for m in _IDENT.findall(cond) if m.lower() not in _KW_LOW]
+                    wf_parts3: List[str] = []
+                    seen_wf3: set = set()
+                    for sr in sig_refs:
+                        if sr.lower() in seen_wf3:
+                            continue
+                        seen_wf3.add(sr.lower())
+                        v = _wf_val(sr)
+                        if v is not None:
+                            wf_parts3.append(f"{sr}={v}")
+                    if wf_parts3:
+                        out.append(f"{i}    waveform  : {', '.join(wf_parts3)}")
+
+            out.append("")
+
+    return "\n".join(out).rstrip()
+
+
 def _render_additional_backtrack_text(rep: Dict[str, Any]) -> str:
     """Best-effort causal backtrack text for a non-primary rule finding."""
     ev = rep.get("evidence") or {}
@@ -242,17 +686,31 @@ def _render_additional_backtrack_text(rep: Dict[str, Any]) -> str:
     if not isinstance(graph, dict):
         return "No expanded RTL backtrack stored for this rule in the current proof artifact."
 
+    adjacency = graph.get("adjacency") or {}
     nodes = graph.get("nodes") or []
     edges = graph.get("edges") or []
-    adjacency = graph.get("adjacency") or {}
     has_tree = len(nodes) > 1 or bool(edges) or any(adjacency.values())
-    if has_tree and _format_dependency_graph is not None:
+    if has_tree:
         try:
-            rendered = _format_dependency_graph(graph)
+            rule_id = str(rep.get("rule_id") or "?")
+            analysis_cycle = (ev.get("analysis_cycle") or rep.get("analysis_cycle") or "?")
+            # Derive violation class from rule_id → canonical name
+            canon_name, _ = _canonical_rule(rule_id)
+            violation_class = canon_name or str(
+                rep.get("classification") or rep.get("violation_class") or
+                rep.get("name") or ""
+            )
+            rendered = _render_backtrack_narrative(
+                graph,
+                rule_id=rule_id,
+                analysis_cycle=analysis_cycle,
+                indent="  ",
+                violation_class=violation_class,
+            )
         except Exception:
             rendered = ""
         if rendered:
-            return "Stored dependency graph:\n\n" + "\n".join(f"  {ln}" for ln in rendered.splitlines())
+            return rendered
 
     trigger = str(ev.get("trigger_condition") or "").strip()
     if trigger:

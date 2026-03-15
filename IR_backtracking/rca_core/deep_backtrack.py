@@ -1,4 +1,4 @@
-from deep_backtrack import build_dependency_graph, format_dependency_graph
+from deep_backtrack import build_dependency_graph, format_dependency_graph, fmt_dependency_graph_detailed
 
-__all__ = ["build_dependency_graph", "format_dependency_graph"]
+__all__ = ["build_dependency_graph", "format_dependency_graph", "fmt_dependency_graph_detailed"]
 

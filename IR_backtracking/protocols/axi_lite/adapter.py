@@ -28,7 +28,7 @@ except Exception:
 _IDENT_RE = re.compile(r"\b[A-Za-z_][A-Za-z0-9_]*\b")
 _RESERVED = {"and", "or", "not", "true", "false"}
 _RULE_PRIMARY_SIGNAL = {
-    "RULE_12": "ARREADY",
+    "RULE_12": "RVALID",
     "RULE_13": "BVALID",
     "RULE_5": "BVALID",
     "RULE_6": "BVALID",

@@ -29,16 +29,18 @@ Download from the [Releases page](https://github.com/meenalgada142/WaveEye/relea
 
 | Platform | File |
 |----------|------|
-| Windows 64-bit | `WaveEye-windows.exe` |
-| Linux x86_64 | `WaveEye-linux-x64` |
+| Windows 64-bit | `WaveEye-windows.zip` |
+| Linux x86_64 | `WaveEye-linux.zip` |
 
 ```bash
 # Linux
-chmod +x WaveEye-linux-x64
-./WaveEye-linux-x64
+unzip WaveEye-linux.zip
+chmod +x WaveEye-linux/waveeye
+./WaveEye-linux/waveeye
 
 # Windows
-WaveEye-windows.exe
+# Extract WaveEye-windows.zip, then run:
+WaveEye-windows\waveeye.exe
 ```
 
 ---

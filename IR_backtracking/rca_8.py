@@ -1176,8 +1176,8 @@ _AXIL4_RULE_SIGNALS: Dict[str, str] = {
     "RULE_9":  "BRESP",     # Write response stability: BRESP changed while BVALID held
     "RULE_10": "RVALID",    # RVALID asserted without AR handshake (unprompted)
     "RULE_11": "BVALID",    # BVALID asserted before AW+W handshakes complete
-    "RULE_12": "BVALID",    # Write response missing / BVALID never asserted
-    "RULE_13": "RVALID",    # Read response missing  / RVALID never asserted
+    "RULE_12": "RVALID",    # Read response missing  / RVALID never asserted (AR → R channel)
+    "RULE_13": "BVALID",    # Write response missing / BVALID never asserted (AW+W → B channel)
     "RULE_14": "WSTRB",
     "RULE_15": "BRESP",
 }
@@ -1204,21 +1204,30 @@ def _promote_raw_violations(
         # Determine which AXI signal to backtrack from
         sig_name = _AXIL4_RULE_SIGNALS.get(rule_id, "")
 
-        # Match against actual waveform column names (case-insensitive)
+        # Match against actual waveform column names via AXI alias resolution,
+        # with suffix fallback for prefixed signals (s_axil_*, s_axil_a_*, etc.)
         actual = sig_name
         if sig_name and view is not None:
-            wf_hit = next(
-                (s for s in view.signals if s.upper() == sig_name.upper()),
-                None,
-            )
+            wf_hit = _resolve_axi_signal(sig_name, view.signals)
+            if not wf_hit:
+                # Suffix match: "BVALID" matches "s_axil_bvalid", "s_axil_a_bvalid", etc.
+                suffix = "_" + sig_name.lower()
+                wf_hit = next(
+                    (s for s in view.signals if s.lower() == sig_name.lower()
+                     or s.lower().endswith(suffix)),
+                    None,
+                )
             if wf_hit:
                 actual = wf_hit
 
-        # Generate dependency graph via deep_backtrack
+        # Generate dependency graph via deep_backtrack, then annotate with
+        # waveform values so the diagnosis report can show per-term evaluation.
         dg: Dict[str, Any] = {}
         if actual and isinstance(logic_table, dict) and logic_table:
             try:
                 dg = build_dependency_graph(actual, logic_table, max_depth=6)
+                if dg and view is not None and cycle is not None:
+                    _annotate_dg_with_waveform(dg, view, int(cycle))
             except Exception:
                 dg = {}
 

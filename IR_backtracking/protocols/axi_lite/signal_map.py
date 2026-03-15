@@ -5,16 +5,26 @@ from typing import Dict, Iterable, List, Optional, Tuple
 
 AXI_LITE_SIGNAL_ALIASES: Dict[str, List[str]] = {
     # ── Handshake signals (VALID / READY) ─────────────────────────────────────
-    "AWVALID": ["AWVALID", "s_axi_awvalid", "S_AXI_AWVALID"],
-    "AWREADY": ["AWREADY", "s_axi_awready", "S_AXI_AWREADY"],
-    "WVALID":  ["WVALID",  "s_axi_wvalid",  "S_AXI_WVALID"],
-    "WREADY":  ["WREADY",  "s_axi_wready",  "S_AXI_WREADY"],
-    "BVALID":  ["BVALID",  "s_axi_bvalid",  "S_AXI_BVALID"],
-    "BREADY":  ["BREADY",  "s_axi_bready",  "S_AXI_BREADY"],
-    "ARVALID": ["ARVALID", "s_axi_arvalid", "S_AXI_ARVALID"],
-    "ARREADY": ["ARREADY", "s_axi_arready", "S_AXI_ARREADY"],
-    "RVALID":  ["RVALID",  "s_axi_rvalid",  "S_AXI_RVALID"],
-    "RREADY":  ["RREADY",  "s_axi_rready",  "S_AXI_RREADY"],
+    "AWVALID": ["AWVALID", "s_axi_awvalid", "S_AXI_AWVALID",
+                 "s_axil_awvalid", "s_axil_a_awvalid", "s_axil_b_awvalid"],
+    "AWREADY": ["AWREADY", "s_axi_awready", "S_AXI_AWREADY",
+                 "s_axil_awready", "s_axil_a_awready", "s_axil_b_awready"],
+    "WVALID":  ["WVALID",  "s_axi_wvalid",  "S_AXI_WVALID",
+                 "s_axil_wvalid",  "s_axil_a_wvalid",  "s_axil_b_wvalid"],
+    "WREADY":  ["WREADY",  "s_axi_wready",  "S_AXI_WREADY",
+                 "s_axil_wready",  "s_axil_a_wready",  "s_axil_b_wready"],
+    "BVALID":  ["BVALID",  "s_axi_bvalid",  "S_AXI_BVALID",
+                 "s_axil_bvalid",  "s_axil_a_bvalid",  "s_axil_b_bvalid"],
+    "BREADY":  ["BREADY",  "s_axi_bready",  "S_AXI_BREADY",
+                 "s_axil_bready",  "s_axil_a_bready",  "s_axil_b_bready"],
+    "ARVALID": ["ARVALID", "s_axi_arvalid", "S_AXI_ARVALID",
+                 "s_axil_arvalid", "s_axil_a_arvalid", "s_axil_b_arvalid"],
+    "ARREADY": ["ARREADY", "s_axi_arready", "S_AXI_ARREADY",
+                 "s_axil_arready", "s_axil_a_arready", "s_axil_b_arready"],
+    "RVALID":  ["RVALID",  "s_axi_rvalid",  "S_AXI_RVALID",
+                 "s_axil_rvalid",  "s_axil_a_rvalid",  "s_axil_b_rvalid"],
+    "RREADY":  ["RREADY",  "s_axi_rready",  "S_AXI_RREADY",
+                 "s_axil_rready",  "s_axil_a_rready",  "s_axil_b_rready"],
     # ── Payload / stability signals (required for MODE-C alias resolution) ─────
     # Without these, _detect_stability_mutation cannot find "RDATA" when the
     # waveform uses the prefixed name "s_axi_rdata".
