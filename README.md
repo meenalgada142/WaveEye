@@ -156,8 +156,8 @@ WaveEye has been validated on 7 designs with **zero false positives** on clean w
 | `arreay_bug` | axi_lite_fifo_wrapper.sv | 1 | AXI4L_RVALID_UNPROMPTED | FSM_OUTPUT_MASKED on ARREADY — broader condition overwrites state-specific value | 10.5s |
 | `axi_lite_slave_v1_0` | axi_lite_slave_v1_0.v | 1 | AXI4L_RDATA_STABILITY | s_axi_rdata driver has no RVALID/RREADY gate — payload advances during backpressure | 1.7s |
 | `axil_adapter` | Alex Forencich axil_adapter | 0 | **PASS — 0 false positives** | No protocol violations on clean design | 30.2s |
-| `axil_ram` | Alex Forencich axil_ram | 56 | AXI4L_WRITE_RESPONSE_MISSING | Always-block NBA override on RVALID — asserting assignment overwritten | 1.5s |
-| `axil_dp_ram` | Alex Forencich axil_dp_ram | 100 | AXI4L_BVALID_PERSISTENCE | Always-block NBA override on BVALID — asserting assignment overwritten | 24.2s |
+| `axil_ram` | Alex Forencich axil_ram | 56 | AXI4L_WRITE_RESPONSE_MISSING | Always-block NBA override on BVALID — asserting assignment overwritten; 4 violation types detected | 1.5s |
+| `axil_dp_ram` | Alex Forencich axil_dp_ram | 100 | AXI4L_BVALID_PERSISTENCE | Always-block NBA override on BVALID — asserting assignment overwritten; 4 violation types detected | 24.2s |
 | `exec_order_bug` | exec_order_wr_fsm.sv | 1 | AXI4L_WRITE_RESPONSE_MISSING | w_state reaches W_IDLE via flush without completing AXI handshake — missing WVALID/BVALID/BREADY guard | 1.3s |
 
 `axil_adapter`, `axil_ram`, and `axil_dp_ram` use the open-source [Alex Forencich verilog-axi](https://github.com/alexforencich/verilog-axi) reference designs. The clean run (`axil_adapter`) confirmed zero false positives.
