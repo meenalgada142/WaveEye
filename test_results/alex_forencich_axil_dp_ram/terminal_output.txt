@@ -1,166 +1,102 @@
-╔══════════════════════════════════════════════════════════════════╗
-║     AXI4-LITE COMPLETE ANALYSIS PIPELINE - INTERACTIVE MODE      ║
-║        IR Backtrack → Protocol → Grouping → FSM Analysis         ║
-╚══════════════════════════════════════════════════════════════════╝
-
-
-Processing all 1 RTL file(s):
-  - axil_dp_ram.v
-
-======================================================================
-  RTL FILE 1/1
-======================================================================
-
-  1. Generic RTL causality analysis only
-     → Run interactive analysis using true_drivers.csv
-     → Skip AXI4-Lite protocol checking entirely
-
-  2. AXI4-Lite protocol RCA
-     → Run AXI4-Lite checker + signal grouping
-     → Interactive analysis available regardless of violation count
-
-  3. Both (generic first, then optional AXI4-Lite)
-     → Run interactive analysis first (true_drivers.csv)
-     → Then optionally run AXI4-Lite protocol checking
-
-Select mode (1/2/3):
-STRUCTURAL DEFECT SUMMARY
-───────────────────────────────────────────────────────────────────────────────
-  WRITE_ALIASING_BUG
-  Destination      : mem
-  First seen       : axil_dp_ram.v
-  Instance count   : 3 replicated assignments
-
-  LANE_BIJECTION_VIOLATION
-  Destination      : mem
-  First seen       : axil_dp_ram.v
-  Instance count   : 3 replicated assignments
-
-───────────────────────────────────────────────────────────────────────────────
-
-CAUSAL ANALYSIS SUMMARY
-───────────────────────────────────────────────────────────────────────────────
-  Protocol violations detected                : 100   (AXI handshake rule failures)
-  Structural defects (semantic patterns)      :   6   (distinct destination / transform / bit-loss)
-  Replicated instances                        :   6   (RTL locations exhibiting the same defect pattern)
-  Violations caused by structural defects     :   0   (protocol failures traceable to RTL)
-  Downstream secondary effects                :   0   (cascading from primary cause)
-  Independent protocol issues                 : 100   (pure FSM / handshake, no RTL link)
-───────────────────────────────────────────────────────────────────────────────
-
-Design: all
+====================================================================
+WaveEye Root Cause Report
 ====================================================================
 
-VIOLATION RCA 1/4
---------------------------------------------------------------------
-
 VIOLATION
-  AXI4L_BVALID_PERSISTENCE
-  Spec  : AXI4-Lite Spec §A3.1.2
-  Cycle : 14672
-
-AFFECTED SIGNAL
-  BVALID
+  AXI4L_WRITE_RESPONSE_MISSING
+  Spec  : AXI4-Lite Spec §A3.2.1
+  Cycle : 23663
 
 RTL LOCATION
   axil_dp_ram.v:164
 
 --------------------------------------------------------------------
-ROOT CAUSE
+CAUSAL BACKTRACK
 --------------------------------------------------------------------
-Always-block NBA override on BVALID — asserting assignment overwritten
+  MODE D  Response Missing     -- required response (BVALID/RVALID) never asserted after handshake
+  Root cause: why does the ASSERTS condition never fire? Which term in the condition stays FALSE?
 
-BVALID was deasserted before a handshake occurred. Per AXI4-Lite
-specification, once BVALID is asserted, it MUST remain asserted
-until BREADY is also high (completing the handshake).
+  Primary signal : s_axil_a_bvalid = 0  [RULE_13, cycle 23663]
+  RTL file       : axil_dp_ram.v:142
 
---------------------------------------------------------------------
-VIOLATION RCA 2/4
---------------------------------------------------------------------
+  Drive chain (output <-- register <-- combinational logic):
+    s_axil_a_bvalid  <--  s_axil_a_bvalid_reg  <--  s_axil_a_bvalid_next
+    s_axil_a_bvalid @ axil_dp_ram.v:142  |  s_axil_a_bvalid_reg @ axil_dp_ram.v:233  |  s_axil_a_bvalid_next @ axil_dp_ram.v:190
 
-VIOLATION
-  AXI4L_RVALID_PERSISTENCE
-  Spec  : AXI4-Lite Spec §A3.1.2
-  Cycle(s)      : 15022, 33537, 33587, 33837, 41024, 41124, 41224, 41324, 41424, 50219, 50319, 50419, 50519, 50619
-  Occurrence(s) : 14
+  Key controlling logic : s_axil_a_bvalid_next  (axil_dp_ram.v:190)
+    D0 [ASSERTS]  [inactive at this cycle]
+      condition : (write_eligible_a) && ((!(read_eligible_a)) || 
+                   (last_read_a_reg))
+      assigns   : 1'b1  @ axil_dp_ram.v:190
+      evaluated conditions:
+        TRUE  : ((!(read_eligible_a)) || (last_read_a_reg))  [read_eligible_a=0, last_read_a_reg=0]
+        FALSE : (write_eligible_a)  [write_eligible_a=0]  <-- BLOCKING
 
-AFFECTED SIGNAL
-  RVALID
-
-PROBLEM
-  RVALID was deasserted before a handshake occurred. Per AXI4-Lite
-  specification, once RVALID is asserted, it MUST remain asserted
-  until RREADY is also high (completing the handshake).
-
-EVIDENCE
-  RVALID was asserted at cycle 14997 but dropped to 0 at cycle 15022
-  (after 25 cycles) without RREADY ever being high. The transaction
-  was prematurely withdrawn.
-
+    D1 [HOLDS]  [ACTIVE at this cycle]
+      condition : true
+      assigns   : s_axil_a_bvalid_reg && !s_axil_a_bready  @ axil_dp_ram.v:177
+      evaluated conditions:
+        TRUE  : true
 --------------------------------------------------------------------
 ROOT CAUSE
 --------------------------------------------------------------------
-RVALID dropped before RREADY completed the handshake.
+Always-block NBA override on target signal — asserting assignment overwritten
 
 --------------------------------------------------------------------
-VIOLATION RCA 3/4
+VIOLATION RCA 2/2
 --------------------------------------------------------------------
 
 VIOLATION
   AXI4L_READ_RESPONSE_MISSING
   Spec  : AXI4-Lite Spec §A3.3.1
-  Cycle(s)      : 14722, 24092, 33574, 33824, 36549, 41099, 41199, 41299, 41399, 45584, 50307, 50407, 50507, 50607, 50694
-  Occurrence(s) : 15
+  Cycle(s)      : 23783
+  Occurrence(s) : 1
 
 AFFECTED SIGNAL
-  RVALID
+  s_axil_a_rvalid
+
+RTL LOCATION
+  axil_dp_ram.v:146
+  RTL line : 146
 
 PROBLEM
-  A second read address handshake occurred while a previous read
-  transaction was still outstanding. AXI4-Lite specification explicitly
-  permits ONLY ONE outstanding read transaction at a time.
+  Enable condition was not satisfiable at obligation time.
 
 EVIDENCE
-  First AR handshake occurred at cycle 14697, initiating a read
-  transaction. Before the read data response completed (RVALID &&
-  RREADY), another AR handshake occurred at cycle 14722. The first
-  transaction was outstanding for 25 cycles when this violation occurred.
+  s_axil_a_arvalid && s_axil_a_arready
+
+--------------------------------------------------------------------
+CAUSAL BACKTRACK
+--------------------------------------------------------------------
+  MODE D  Response Missing     -- required response (BVALID/RVALID) never asserted after handshake
+  Root cause: why does the ASSERTS condition never fire? Which term in the condition stays FALSE?
+
+  Primary signal : s_axil_a_rvalid  [RULE_12, cycle 23783]
+  RTL file       : axil_dp_ram.v:146
+
+  Drive chain (output <-- register <-- combinational logic):
+    s_axil_a_rvalid  <--  s_axil_a_rvalid_next
+    s_axil_a_rvalid @ axil_dp_ram.v:146  |  s_axil_a_rvalid_next @ axil_dp_ram.v:197
+
+  Key controlling logic : s_axil_a_rvalid_next  (axil_dp_ram.v:197)
+    D0 [ASSERTS]
+      condition : (!((write_eligible_a) && ((!(read_eligible_a)) || 
+                   (last_read_a_reg)))) && (read_eligible_a)
+      assigns   : 1'b1  @ axil_dp_ram.v:197
+
+    D1 [HOLDS]
+      condition : true
+      assigns   : s_axil_a_rvalid_reg && !(s_axil_a_rready || (PIPELINE_OUTPUT && !s_axil_a_rvalid_pipe_reg))  @ axil_dp_ram.v:180
 
 --------------------------------------------------------------------
 ROOT CAUSE
+--------------------------------------------------------------------
+s_axil_a_rvalid never arrived after the read-address handshake.
+
+--------------------------------------------------------------------
+CONCLUSION
 --------------------------------------------------------------------
 AR channel accepts reads but R response is never issued.
-
---------------------------------------------------------------------
-VIOLATION RCA 4/4
---------------------------------------------------------------------
-
-VIOLATION
-  AXI4L_WRITE_RESPONSE_MISSING
-  Spec  : AXI4-Lite Spec §A3.2.1
-  Cycle(s)      : 14797, 14822, 23904, 33624, 33674, 33724, 33774, 36512, 41149, 41249, 41349,
-                  45547, 50357, 50457, 50557, 50707, 51084, 51134, 51184, 51234, 51284, 51334,
-                  51384, 51434, 51484, 51664, 52314, 52364, 52414, 52464, 52514, 52564, 52614,
-                  52664, 52714, 52857
-  Occurrence(s) : 36
-
-AFFECTED SIGNAL
-  BVALID
-
-PROBLEM
-  A second write address handshake occurred while a previous write
-  transaction was still outstanding. AXI4-Lite specification explicitly
-  permits ONLY ONE outstanding write transaction at a time.
-
-EVIDENCE
-  First write transaction started at cycle 14647. Before the write
-  response completed (BVALID && BREADY), another AW handshake occurred
-  at cycle 14797. The first transaction was outstanding for 150 cycles.
-
---------------------------------------------------------------------
-ROOT CAUSE
---------------------------------------------------------------------
-BVALID never arrived after the write transaction completed.
 
 --------------------------------------------------------------------
 CONCLUSION
@@ -169,20 +105,3 @@ AW channel continues accepting addresses but B response is never issued.
 
 Evidence   : predicate analysis
 ====================================================================
-
-────────────────────────────────────────────────────────────────
-WaveEye Diagnostic Summary
-────────────────────────────────────────────────────────────────
-Primary Failure      : AXI4L_BVALID_PERSISTENCE  (AXI4-Lite Spec §A3.1.2)
-Confirmed Root Cause : Always-block NBA override on BVALID — asserting
-                       assignment overwritten
-Severity             : Handshake violation — AXI compliance failure
-Transactions Affected: Protocol-visible failures: 100
-────────────────────────────────────────────────────────────────
-
-Total execution time: 24.20s
-
-
-[SUCCESS] Pipeline complete in 24.20s
-
-Analysis complete. Press Enter to exit...
