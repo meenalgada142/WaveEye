@@ -1096,6 +1096,15 @@ def generate_console_diagnosis(
             L.append("")
 
     # ── CAUSAL BACKTRACK ──────────────────────────────────────────────────────
+    if not chain and pev0:
+        # No predicate-analysis chain (promoted raw violation) — fall back to
+        # the dependency_graph stored in the primary finding's evidence dict.
+        _fb = _render_additional_backtrack_text(pev0)
+        _no_bt = "No expanded RTL backtrack stored"
+        if _fb and _no_bt not in _fb:
+            L += ["", BAR, "CAUSAL BACKTRACK", BAR]
+            L.extend(_fb.splitlines())
+
     if chain:
         L += ["", BAR, "CAUSAL BACKTRACK", BAR]
         start    = ma.get("chain_start_term") or (chain[0].get("term") if chain else "")
