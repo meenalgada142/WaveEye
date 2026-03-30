@@ -24,11 +24,6 @@ python main.py
 ```
 
 
-
-```
-
----
-
 ## Input Format
 
 Point WaveEye at a folder with two subfolders:
