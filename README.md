@@ -23,24 +23,8 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### From Binary (no Python required)
 
-Download from the [Releases page](https://github.com/meenalgada142/WaveEye/releases):
 
-| Platform | File |
-|----------|------|
-| Windows 64-bit | `WaveEye-windows.zip` |
-| Linux x86_64 | `WaveEye-linux.zip` |
-
-```bash
-# Linux
-unzip WaveEye-linux.zip
-chmod +x WaveEye-linux/waveeye
-./WaveEye-linux/waveeye
-
-# Windows
-# Extract WaveEye-windows.zip, then run:
-WaveEye-windows\waveeye.exe
 ```
 
 ---
